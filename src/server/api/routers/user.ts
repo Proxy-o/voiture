@@ -46,7 +46,7 @@ export const userRouter = createTRPCRouter({
   create: protectedProcedure
     .input(
       z.object({
-        username: z.string(),
+        name: z.string(),
         password: z.string(),
         email: z.string(),
       }),
