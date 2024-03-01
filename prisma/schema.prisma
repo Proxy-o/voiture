@@ -1,0 +1,131 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model Session {
+    id        String   @id
+    userId    BigInt
+    expiresAt DateTime
+    user      User     @relation(references: [id], fields: [userId], onDelete: Cascade)
+}
+
+model Settings {
+    id                   BigInt    @id @default(autoincrement())
+    company_logo         String?   @db.VarChar(255)
+    company_name         String    @db.VarChar(50)
+    owner_name           String    @db.VarChar(50)
+    owner_lastname       String    @db.VarChar(50)
+    vat_number           String    @db.VarChar(255)
+    street               String    @db.VarChar(50)
+    zip_code             String    @db.VarChar(255)
+    city                 String    @db.VarChar(255)
+    country              String    @db.VarChar(255)
+    owner_email          String    @db.VarChar(50)
+    owner_phone          String    @db.VarChar(255)
+    owner_website        String    @db.VarChar(50)
+    bank_name            String    @db.VarChar(50)
+    bank_account_number  String    @db.VarChar(255)
+    bic_number           String    @db.VarChar(255)
+    bank_name2           String?   @db.VarChar(50)
+    bank_account_number2 String?   @db.VarChar(255)
+    bic_number2          String?   @db.VarChar(255)
+    created_at           DateTime? @default(now())
+    updated_at           DateTime? @default(now())
+
+    users   User[]
+    Car     Car[]
+    Client  Client[]
+    Invoice Invoice[]
+}
+
+model User {
+    id                BigInt    @id @default(autoincrement())
+    name              String    @unique @db.VarChar(255)
+    email             String    @unique @db.VarChar(255)
+    email_verified_at DateTime?
+    password          String    @db.VarChar(255)
+    remember_token    String?   @db.VarChar(100)
+    created_at        DateTime  @default(now())
+    updated_at        DateTime  @updatedAt
+    compagny_id       BigInt
+
+    sessions Session[]
+    settings Settings? @relation(fields: [compagny_id], references: [id])
+}
+
+model Car {
+    id                 BigInt    @id @default(autoincrement())
+    chassis_number     String    @unique @db.VarChar(17)
+    brand              String    @db.VarChar(255)
+    model              String    @db.VarChar(255)
+    car_type           String    @db.VarChar(255)
+    transmission       String    @db.VarChar(20)
+    first_registration DateTime
+    mileage            Int
+    engine_power       Int
+    cylinder           Int
+    fuel               String    @db.VarChar(255)
+    co2                String    @db.VarChar(5)
+    color              String    @db.VarChar(20)
+    number_keys        Int
+    cer_of_conf        Boolean   @default(false)
+    inspection_form    Boolean   @default(false)
+    car_pass           Boolean   @default(false)
+    register_cert      Boolean   @default(false)
+    created_at         DateTime? @default(now())
+    updated_at         DateTime? @default(now())
+
+    compagny_id BigInt
+    settings    Settings  @relation(fields: [compagny_id], references: [id])
+    Invoice     Invoice[]
+}
+
+model Client {
+    id            BigInt    @id @default(autoincrement())
+    is_company    Boolean
+    surname       String?   @db.VarChar(255)
+    firstname     String?   @db.VarChar(255)
+    company_name  String?   @db.VarChar(255)
+    btw_number    String?   @db.VarChar(255)
+    street        String    @db.VarChar(255)
+    postal_code   String    @db.VarChar(10)
+    city          String    @db.VarChar(255)
+    country       String    @db.VarChar(20)
+    email         String?   @db.VarChar(30)
+    phone_number  String?   @db.VarChar(20)
+    mobile_number String?   @db.VarChar(20)
+    created_at    DateTime? @default(now())
+    updated_at    DateTime? @default(now())
+
+    compagny_id BigInt
+    settings    Settings  @relation(fields: [compagny_id], references: [id])
+    Invoice     Invoice[]
+}
+
+model Invoice {
+    id             BigInt    @id @default(autoincrement())
+    client_id      BigInt
+    car_id         BigInt
+    date           DateTime
+    due_date       DateTime
+    advance        Decimal
+    amount         Decimal
+    payment_method String
+    paid_status    Boolean
+    memo           String?   @db.VarChar(255)
+    created_at     DateTime? @default(now())
+    updated_at     DateTime? @default(now())
+
+    company_id BigInt
+    client     Client    @relation(fields: [client_id], references: [id])
+    car        Car       @relation(fields: [car_id], references: [id])
+    settings   Settings? @relation(fields: [company_id], references: [id])
+}
