@@ -24,5 +24,12 @@
       "bank_info": "Bank information",
       "bank_info2": "Secondary bank information",
       "create_company": "Create company"
+    },
+    "User": {
+      "name": "User name",
+      "email": "email",
+      "password": "password",
+      "company_name": "Company name",
+      "create_user": "Create user"
     }
   }

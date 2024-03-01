@@ -12,7 +12,6 @@ import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import CustomField from "./customFiled";
 import { Card } from "~/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
 
 export default function CreateCompanyForm() {
   const t = useTranslations("Company");
@@ -47,6 +46,7 @@ export default function CreateCompanyForm() {
       form.reset();
     },
   });
+
   function onSubmit(values: z.infer<typeof createCompanySchema>) {
     console.log(values);
     submit(values);

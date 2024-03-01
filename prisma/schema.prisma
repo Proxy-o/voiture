@@ -58,7 +58,7 @@ model User {
     compagny_id       BigInt
 
     sessions Session[]
-    settings Settings? @relation(fields: [compagny_id], references: [id])
+    compagny Settings  @relation(fields: [compagny_id], references: [id])
 }
 
 model Car {

@@ -1,11 +1,10 @@
 import { z } from "zod";
 
 export const createUserSchema = z.object({
-  username: z.string().min(3).max(50),
-  password: z.string().min(6).max(100),
+  name: z.string().min(3).max(255),
   email: z.string().email(),
-  role: z.enum(["user", "admin"]).optional(),
-  type: z.enum(["cafe", "restaurant", "gym"]).optional(),
+  password: z.string().min(6).max(100),
+  compagnyId: z.number(),
 });
 
 export type User = {
