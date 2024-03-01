@@ -1,0 +1,22 @@
+{
+  "Company": {
+    "company_logo": "logo in fr",
+    "company_name": "Company name",
+    "owner_name": "Owner name",
+    "owner_lastname": "Owner last name",
+    "vat_number": "VAT number ",
+    "street": "Street address",
+    "zip_code": "Postal code",
+    "city": "City",
+    "country": "Country",
+    "owner_email": " email address",
+    "owner_phone": " phone number ",
+    "owner_website": "Website",
+    "bank_name": "Primary bank name",
+    "bank_account_number": "Bank account number",
+    "bic_number": "BIC code",
+    "bank_name2": ": Secondary bank name ",
+    "bank_account_number2": ": Secondary account number",
+    "bic_number2": ": Secondary BIC code"
+  }
+}

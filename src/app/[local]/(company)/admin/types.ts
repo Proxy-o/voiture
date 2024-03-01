@@ -30,7 +30,7 @@ export type User = {
 };
 
 export const createCompanySchema = z.object({
-  company_logo: z.string().optional().nullable(), // Allow null values
+  company_logo: z.string().optional(), // Allow null values
   company_name: z.string().min(1).max(50),
   owner_name: z.string().min(1).max(50),
   owner_lastname: z.string().min(1).max(50),
@@ -45,7 +45,7 @@ export const createCompanySchema = z.object({
   bank_name: z.string().min(1).max(50),
   bank_account_number: z.string(),
   bic_number: z.string(),
-  bank_name2: z.string().max(50).optional().nullable(), // Allow null values and limit length
-  bank_account_number2: z.string().optional().nullable(), // Allow null values
-  bic_number2: z.string().optional().nullable(), // Allow null values
+  bank_name2: z.string().max(50).optional(), // Allow null values and limit length
+  bank_account_number2: z.string().optional(), // Allow null values
+  bic_number2: z.string().optional(), // Allow null values
 });

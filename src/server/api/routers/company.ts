@@ -1,6 +1,6 @@
 import { generateId } from "lucia";
 import { Argon2id } from "oslo/password";
-import { createCompanySchema } from "~/app/[local]/admin/types";
+import { createCompanySchema } from "~/app/[local]/(company)/admin/types";
 
 import {
   createTRPCRouter,
@@ -8,7 +8,7 @@ import {
   publicProcedure,
 } from "~/server/api/trpc";
 
-export const userRouter = createTRPCRouter({
+export const companyRouter = createTRPCRouter({
   createCompany: protectedProcedure
     .input(createCompanySchema)
     .mutation(async ({ input, ctx }) => {
