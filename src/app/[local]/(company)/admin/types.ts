@@ -1,6 +1,3 @@
-"use client";
-
-import { create } from "domain";
 import { z } from "zod";
 
 export const createUserSchema = z.object({
@@ -34,17 +31,17 @@ export const createCompanySchema = z.object({
   company_name: z.string().min(1).max(50),
   owner_name: z.string().min(1).max(50),
   owner_lastname: z.string().min(1).max(50),
-  vat_number: z.string(),
+  vat_number: z.string().min(1).max(50),
   street: z.string().min(1).max(50),
-  zip_code: z.string(),
+  zip_code: z.string().min(1).max(50),
   city: z.string().min(1).max(50),
   country: z.string().min(1).max(50),
   owner_email: z.string().email(),
-  owner_phone: z.string(),
-  owner_website: z.string(), // Allow null values and validate as a URL
+  owner_phone: z.string().min(10).max(50),
+  owner_website: z.string(),
   bank_name: z.string().min(1).max(50),
-  bank_account_number: z.string(),
-  bic_number: z.string(),
+  bank_account_number: z.string().min(5).max(50),
+  bic_number: z.string().min(5).max(50),
   bank_name2: z.string().max(50).optional(), // Allow null values and limit length
   bank_account_number2: z.string().optional(), // Allow null values
   bic_number2: z.string().optional(), // Allow null values

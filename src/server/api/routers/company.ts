@@ -9,7 +9,7 @@ import {
 } from "~/server/api/trpc";
 
 export const companyRouter = createTRPCRouter({
-  createCompany: protectedProcedure
+  createCompany: publicProcedure
     .input(createCompanySchema)
     .mutation(async ({ input, ctx }) => {
       return ctx.db.settings.create({

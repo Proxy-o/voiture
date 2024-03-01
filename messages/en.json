@@ -15,8 +15,13 @@
       "bank_name": "Primary bank name",
       "bank_account_number": "Bank account number",
       "bic_number": "BIC code",
-      "bank_name2": ": Secondary bank name ",
-      "bank_account_number2": ": Secondary account number",
-      "bic_number2": ": Secondary BIC code"
+      "bank_name2": "Secondary bank name ",
+      "bank_account_number2": "Secondary account number",
+      "bic_number2": "Secondary BIC code",
+      "company_info": "Company information",
+      "address_info": "Address information",
+      "contact_info": "Contact information",
+      "bank_info": "Bank information",
+      "bank_info2": "Secondary bank information"
     }
   }
