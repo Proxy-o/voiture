@@ -61,3 +61,30 @@ export const createClientSchema = z.object({
   mobile: z.string().min(10).max(50).optional(),
   company_id: z.string().optional(), // Allow null values
 });
+
+export const createCarSchema = z.object({
+  // Basic information
+  chassis_number: z
+    .string()
+    .min(1)
+    .max(17, "Chassis number cannot exceed 17 characters"),
+  brand: z.string(),
+  model: z.string(),
+  car_type: z.string(),
+  transmission: z.string(),
+
+  first_registration: z.date(),
+  mileage: z.number().positive().int(),
+  engine_power: z.number().positive().int(),
+  cylinder: z.number().positive().int(),
+
+  fuel: z.string().max(255, "Fuel type cannot exceed 255 characters"), // Enforce max length (255)
+  co2: z.string().max(5, "CO2 emission value cannot exceed 5 characters"), // Enforce max length (5)
+  color: z.string().max(20, "Color cannot exceed 20 characters"), // Enforce max length (20)
+
+  number_keys: z.number().int().positive(),
+  cer_of_conf: z.boolean(),
+  inspection_form: z.boolean(),
+  car_pass: z.boolean(),
+  register_cert: z.boolean(),
+});

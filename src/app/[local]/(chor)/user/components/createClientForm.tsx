@@ -17,7 +17,6 @@ import { Button } from "~/components/ui/button";
 import { api } from "~/trpc/react";
 import { createClientSchema } from "~/server/api/types";
 import CustomField from "../../admin/components/customFiled";
-import { type User } from "lucia";
 import { useTranslations } from "next-intl";
 
 export default function CreateClientForm({
