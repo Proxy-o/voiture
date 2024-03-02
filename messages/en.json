@@ -68,7 +68,8 @@
       "inspection_form": "Inspection form",
       "car_pass": "Car pass",
       "register_cert": "Registration certificate",
-      "create_car": "Create car"
+      "create_car": "Create car",
+      "select_car": "Select car"
     }
     ,
     "Invoice": {

@@ -44,7 +44,7 @@ export default function CreateCarForm({ company_id }: { company_id: string }) {
       register_cert: false,
     },
   });
-  const { mutate: submit } = api.user.addCar.useMutation();
+  const { mutate: submit } = api.car.addCar.useMutation();
   function onSubmit(values: z.infer<typeof createCarSchema>) {
     submit({
       ...values,
