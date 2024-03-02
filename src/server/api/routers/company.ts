@@ -1,6 +1,4 @@
-import { generateId } from "lucia";
-import { Argon2id } from "oslo/password";
-import { createCompanySchema } from "~/app/[local]/(company)/admin/types";
+import { createCompanySchema } from "~/server/api/types";
 
 import {
   createTRPCRouter,

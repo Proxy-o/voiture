@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useForm } from "react-hook-form";
-import { createUserSchema } from "../types";
+import { createUserSchema } from "../../../../server/api/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import type { z } from "zod";
 import {
@@ -26,7 +26,7 @@ export default function CreateUserForm() {
   const form = useForm<z.infer<typeof createUserSchema>>({
     resolver: zodResolver(createUserSchema),
     defaultValues: {
-      name: "",
+      username: "",
       email: "",
       password: "",
       compagnyId: 1,
@@ -48,7 +48,7 @@ export default function CreateUserForm() {
       <form onSubmit={form.handleSubmit(onSubmit)}>
         <FormField
           control={form.control}
-          name="name"
+          name="username"
           render={({ field }) => (
             <FormItem>
               <FormLabel>{t("name")}</FormLabel>

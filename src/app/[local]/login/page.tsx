@@ -49,7 +49,7 @@ async function login(_: unknown, formData: FormData): Promise<ActionResult> {
 
   const existingUser = await db.user.findUnique({
     where: {
-      name: name.toLocaleLowerCase(),
+      username: name.toLocaleLowerCase(),
     },
   });
   if (!existingUser) {

@@ -48,7 +48,7 @@ model Settings {
 
 model User {
     id                BigInt    @id @default(autoincrement())
-    name              String    @unique @db.VarChar(255)
+    username          String    @unique @db.VarChar(255)
     email             String    @unique @db.VarChar(255)
     email_verified_at DateTime?
     password          String    @db.VarChar(255)

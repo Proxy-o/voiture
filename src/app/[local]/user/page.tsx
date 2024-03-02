@@ -10,7 +10,7 @@ export default async function Page() {
   return (
     <div>
       <CreateClientForm />
-      <ClientsList />
+      {/* <ClientsList /> */}
     </div>
   );
 }

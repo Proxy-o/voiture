@@ -1,7 +1,6 @@
-import { generateId } from "lucia";
 import { Argon2id } from "oslo/password";
 import { z } from "zod";
-import { createUserSchema } from "~/app/[local]/(company)/admin/types";
+import { createClientSchema, createUserSchema } from "~/server/api/types";
 
 import {
   createTRPCRouter,
@@ -16,7 +15,7 @@ export const userRouter = createTRPCRouter({
       const hashedPassword = await new Argon2id().hash(input.password);
       return ctx.db.user.create({
         data: {
-          name: input.name,
+          username: input.username,
           password: hashedPassword,
           email: input.email,
           compagny: {
@@ -28,41 +27,43 @@ export const userRouter = createTRPCRouter({
       });
     }),
 
-  // addClient: protectedProcedure
-  //   .input(
-  //     z.object({
-  //       userId: z.string(),
-  //       name: z.string(),
-  //     }),
-  //   )
-  //   .mutation(async ({ input, ctx }) => {
-  //     return ctx.db.client.create({
-  //       data: {
-  //         name: input.name,
-  //         users: {
-  //           connect: {
-  //             id: input.userId,
-  //           },
-  //         },
-  //       },
-  //     });
-  //   }),
+  addClient: protectedProcedure
+    .input(createClientSchema)
+    .mutation(async ({ input, ctx }) => {
+      return ctx.db.client.create({
+        data: {
+          is_company: input.is_company,
+          surname: input.surname,
+          firstname: input.firstname,
+          company_name: input.company_name,
+          btw_number: input.btw_number,
+          street: input.street,
+          postal_code: input.postal_code,
+          city: input.city,
+          country: input.country,
+          email: input.email,
+          phone_number: input.phone,
+          mobile_number: input.mobile,
+          settings: {
+            connect: {
+              id: input.company_id,
+            },
+          },
+        },
+      });
+    }),
 
-  // getClients: protectedProcedure
-  //   .input(
-  //     z.object({
-  //       userId: z.string(),
-  //     }),
-  //   )
-  //   .query(async ({ input, ctx }) => {
-  //     return ctx.db.client.findMany({
-  //       where: {
-  //         users: {
-  //           some: {
-  //             id: input.userId,
-  //           },
-  //         },
-  //       },
-  //     });
-  //   }),
+  getClients: protectedProcedure
+    .input(
+      z.object({
+        companyId: z.number(),
+      }),
+    )
+    .query(async ({ input, ctx }) => {
+      return ctx.db.client.findMany({
+        where: {
+          compagny_id: input.companyId,
+        },
+      });
+    }),
 });

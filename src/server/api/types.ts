@@ -1,12 +1,5 @@
 import { z } from "zod";
 
-export const createUserSchema = z.object({
-  name: z.string().min(3).max(255),
-  email: z.string().email(),
-  password: z.string().min(6).max(100),
-  compagnyId: z.number(),
-});
-
 export type User = {
   role: {
     id: number;
@@ -24,6 +17,13 @@ export type User = {
   roleId: number;
   typeId: number;
 };
+
+export const createUserSchema = z.object({
+  username: z.string().min(3).max(255),
+  email: z.string().email(),
+  password: z.string().min(6).max(100),
+  compagnyId: z.number(),
+});
 
 export const createCompanySchema = z.object({
   company_logo: z.string().optional(), // Allow null values
@@ -44,4 +44,21 @@ export const createCompanySchema = z.object({
   bank_name2: z.string().max(50).optional(), // Allow null values and limit length
   bank_account_number2: z.string().optional(), // Allow null values
   bic_number2: z.string().optional(), // Allow null values
+});
+
+export const createClientSchema = z.object({
+  is_company: z.boolean(),
+  surname: z.string().min(1).max(50),
+  firstname: z.string().min(1).max(50),
+  company_name: z.string().min(1).max(50).optional(), // Allow null values
+  btw_number: z.string().min(1).max(50).optional(), // Allow null values
+  street: z.string().min(1).max(50),
+  postal_code: z.string().min(1).max(50),
+  city: z.string().min(1).max(50),
+  country: z.string().min(1).max(50),
+  email: z.string().email(),
+  phone: z.string().min(10).max(50),
+  mobile: z.string().min(10).max(50).optional(),
+  // must enter company_id
+  company_id: z.number().min(1),
 });
