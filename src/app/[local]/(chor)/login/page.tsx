@@ -3,8 +3,8 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { lucia } from "~/server/lucia/auth";
 import { db } from "~/server/db";
-import type { ActionResult } from "../../(auth)/signup/page";
-import { Form } from "../../(auth)/signup/components/form";
+import type { ActionResult } from "../../../(auth)/signup/page";
+import { Form } from "../../../(auth)/signup/components/form";
 
 export default async function Page() {
   return (

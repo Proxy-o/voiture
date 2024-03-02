@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useForm } from "react-hook-form";
-import { createUserSchema } from "../../../../server/api/types";
+import { createUserSchema } from "../../../../../server/api/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import type { z } from "zod";
 import {

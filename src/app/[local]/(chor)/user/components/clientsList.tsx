@@ -13,13 +13,15 @@ import {
 } from "~/components/ui/table";
 import { api } from "~/trpc/react";
 
-export default function ClientsList() {
+export default function ClientsList({ company_id }: { company_id: string }) {
   const { user } = useSession();
   const router = useRouter();
   if (!user) {
     router.push("/login");
   }
-  const { data: clients } = api.user.getClients.useQuery({ userId: user!.id });
+  const { data: clients } = api.company.getClients.useQuery(
+    parseInt(company_id),
+  );
   return (
     <Table className="border ">
       <TableCaption>A list of your recent Clients.</TableCaption>
@@ -33,12 +35,16 @@ export default function ClientsList() {
       </TableHeader>
       <TableBody>
         {clients ? (
-          clients.map((client: { id: number; name: string }) => (
+          clients.map((client) => (
             <TableRow key={client.id}>
-              <TableCell>{client.name}</TableCell>
-              <TableCell>{client.name}</TableCell>
-              <TableCell>{client.name}</TableCell>
-              <TableCell>{client.name}</TableCell>
+              <TableCell>
+                {client.firstname} {client.surname}
+              </TableCell>
+              <TableCell>{client.email}</TableCell>
+              <TableCell>
+                <button>Edit</button>
+                <button>Delete</button>
+              </TableCell>
             </TableRow>
           ))
         ) : (

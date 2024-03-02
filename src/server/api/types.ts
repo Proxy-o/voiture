@@ -59,6 +59,5 @@ export const createClientSchema = z.object({
   email: z.string().email(),
   phone: z.string().min(10).max(50),
   mobile: z.string().min(10).max(50).optional(),
-  // must enter company_id
-  company_id: z.number().min(1),
+  company_id: z.string().optional(), // Allow null values
 });

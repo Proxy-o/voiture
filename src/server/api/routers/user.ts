@@ -27,6 +27,29 @@ export const userRouter = createTRPCRouter({
       });
     }),
 
+  getOne: publicProcedure.input(z.number()).query(async ({ input, ctx }) => {
+    return ctx.db.user.findUnique({
+      where: {
+        id: input,
+      },
+      include: {
+        compagny: true,
+      },
+    });
+  }),
+  getUserCompany: publicProcedure
+    .input(z.number())
+    .query(async ({ input, ctx }) => {
+      return ctx.db.user.findUnique({
+        where: {
+          id: input,
+        },
+        select: {
+          compagny: true,
+        },
+      });
+    }),
+
   addClient: protectedProcedure
     .input(createClientSchema)
     .mutation(async ({ input, ctx }) => {
@@ -46,7 +69,7 @@ export const userRouter = createTRPCRouter({
           mobile_number: input.mobile,
           settings: {
             connect: {
-              id: input.company_id,
+              id: Number(input.company_id),
             },
           },
         },

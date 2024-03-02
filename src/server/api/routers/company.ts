@@ -5,6 +5,7 @@ import {
   protectedProcedure,
   publicProcedure,
 } from "~/server/api/trpc";
+import { z } from "zod";
 
 export const companyRouter = createTRPCRouter({
   createCompany: publicProcedure
@@ -30,6 +31,15 @@ export const companyRouter = createTRPCRouter({
           bank_name2: input.bank_name2,
           bank_account_number2: input.bank_account_number2,
           bic_number2: input.bic_number2,
+        },
+      });
+    }),
+  getClients: publicProcedure
+    .input(z.number())
+    .query(async ({ input, ctx }) => {
+      return ctx.db.client.findMany({
+        where: {
+          compagny_id: input,
         },
       });
     }),

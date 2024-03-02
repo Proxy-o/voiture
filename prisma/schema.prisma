@@ -111,9 +111,11 @@ model Client {
 }
 
 model Invoice {
-    id             BigInt    @id @default(autoincrement())
-    client_id      BigInt
-    car_id         BigInt
+    id         BigInt @id @default(autoincrement())
+    client_id  BigInt
+    car_id     BigInt
+    company_id BigInt
+
     date           DateTime
     due_date       DateTime
     advance        Decimal
@@ -124,8 +126,7 @@ model Invoice {
     created_at     DateTime? @default(now())
     updated_at     DateTime? @default(now())
 
-    company_id BigInt
-    client     Client    @relation(fields: [client_id], references: [id])
-    car        Car       @relation(fields: [car_id], references: [id])
-    settings   Settings? @relation(fields: [company_id], references: [id])
+    client   Client    @relation(fields: [client_id], references: [id])
+    car      Car       @relation(fields: [car_id], references: [id])
+    settings Settings? @relation(fields: [company_id], references: [id])
 }

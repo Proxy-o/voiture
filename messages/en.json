@@ -32,4 +32,22 @@
       "company_name": "Company name",
       "create_user": "Create user"
     }
+    ,
+    "Client": {
+      "is_company": "Is a company?",
+      "surname": "Surname",
+      "first_name": "First name",
+      "company_name": "Company name",
+      "btw_number": "BTW number",
+      "street": "Street address",
+      "postal_code": "Postal code",
+      "city": "City",
+      "country": "Country",
+      "email": "Email",
+      "phone": "Phone number",
+      "mobile": "Mobile number",
+      "website": "Website",
+      "create_client": "Create client"
+
+    }
   }
