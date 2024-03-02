@@ -4,6 +4,8 @@ import CreateClientForm from "./components/createClientForm";
 import ClientsList from "./components/clientsList";
 import { api } from "~/trpc/server";
 import { redirect } from "next/navigation";
+import CreateCarForm from "./components/createCarForm";
+import CreateInvoiceForm from "./components/createInvoiceForm";
 
 export default async function Page() {
   const { session, user } = await validateRequest();
@@ -19,8 +21,10 @@ export default async function Page() {
   // get user data
   return (
     <div>
-      <CreateClientForm company_id={company.compagny.id.toString()} />
-      <ClientsList company_id={company.compagny.id.toString()} />
+      {/* <CreateClientForm company_id={company.compagny.id.toString()} />
+      <ClientsList company_id={company.compagny.id.toString()} /> */}
+      {/* <CreateCarForm company_id={company.compagny.id.toString()} /> */}
+      <CreateInvoiceForm company_id={company.compagny.id.toString()} />
     </div>
   );
 }

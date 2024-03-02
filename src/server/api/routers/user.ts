@@ -3,6 +3,7 @@ import { z } from "zod";
 import {
   createCarSchema,
   createClientSchema,
+  createInvoiceSchema,
   createUserSchema,
 } from "~/server/api/types";
 
@@ -102,6 +103,42 @@ export const userRouter = createTRPCRouter({
           inspection_form: input.inspection_form,
           car_pass: input.car_pass,
           register_cert: input.register_cert,
+          settings: {
+            connect: {
+              id: Number(input.company_id),
+            },
+          },
+        },
+      });
+    }),
+
+  addInvoice: protectedProcedure
+    .input(createInvoiceSchema)
+    .mutation(async ({ input, ctx }) => {
+      return ctx.db.invoice.create({
+        data: {
+          client: {
+            connect: {
+              id: Number(input.client_id),
+            },
+          },
+          car: {
+            connect: {
+              id: Number(input.car_id),
+            },
+          },
+          settings: {
+            connect: {
+              id: Number(input.company_id),
+            },
+          },
+          date: input.date,
+          due_date: input.due_date,
+          advance: input.advance,
+          amount: input.amount,
+          payment_method: input.payment_method,
+          paid_status: input.paid_status,
+          memo: input.memo,
         },
       });
     }),

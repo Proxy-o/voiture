@@ -48,6 +48,37 @@
       "mobile": "Mobile number",
       "website": "Website",
       "create_client": "Create client"
-
+    }
+    ,
+    "Car": {
+     "chassis_number": "Chassis number",
+      "brand": "Brand",
+      "model": "Model",
+      "car_type": "Car type",
+      "transmission": "Transmission",
+      "first_registration": "First registration",
+      "mileage": "Mileage",
+      "engine_power": "Engine power",
+      "cylinder": "Cylinder",
+      "fuel": "Fuel",
+      "color": "Color",
+      "co2": "CO2",
+      "number_keys": "Number of keys",
+      "cer_of_conf": "Certificate of conformity",
+      "inspection_form": "Inspection form",
+      "car_pass": "Car pass",
+      "register_cert": "Registration certificate",
+      "create_car": "Create car"
+    }
+    ,
+    "Invoice": {
+"date": "Date",
+"due_date": "Due date",
+"advance": "Advance",
+"amount": "Amount",
+"payment_method": "Payment method",
+"paid_status": "Paid status",
+"memo": "Memo",
+"create_invoice": "Create invoice"
     }
   }

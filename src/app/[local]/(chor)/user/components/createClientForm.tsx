@@ -29,6 +29,7 @@ export default function CreateClientForm({
   const form = useForm<z.infer<typeof createClientSchema>>({
     resolver: zodResolver(createClientSchema),
     defaultValues: {
+      company_id,
       is_company: false,
       surname: "",
       firstname: "",
@@ -49,7 +50,6 @@ export default function CreateClientForm({
   function onSubmit(values: z.infer<typeof createClientSchema>) {
     submit({
       ...values,
-      company_id,
     });
   }
 

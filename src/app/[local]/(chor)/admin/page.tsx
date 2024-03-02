@@ -5,7 +5,7 @@ import CreateUserForm from "./components/createUserForm";
 export default function Page() {
   return (
     <div>
-      {/* <CreateCompanyForm /> */}
+      <CreateCompanyForm />
       <CreateUserForm />
     </div>
   );
