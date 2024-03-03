@@ -54,7 +54,7 @@ export default function SelectClient({
             </SelectContent>
           </Select>
         ) : (
-          <p>No Client available</p>
+          <p>{t("no_client_yet")}</p>
         )}
       </div>
       {clients &&

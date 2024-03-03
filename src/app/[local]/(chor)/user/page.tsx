@@ -11,6 +11,7 @@ import SelectCar from "./components/selectCar";
 import { useSession } from "~/app/_context/SessionContext";
 import { api } from "~/trpc/react";
 import SelectClient from "./components/selectClient";
+import { UserContext } from "./context/userContext";
 
 export default function Page() {
   const [carId, setCarId] = useState("");
@@ -27,27 +28,27 @@ export default function Page() {
   if (!company && isSuccess) {
     redirect("/login");
   }
-  console.log(carId);
-
-  // get user data
+  const [isCarOpen, setIsCarOpen] = useState(false);
   return (
-    <div>
-      {/* <CreateClientForm company_id={company.compagny.id.toString()} />
+    <UserContext.Provider value={{ isCarOpen, setIsCarOpen }}>
+      <div>
+        {/* <CreateClientForm company_id={company.compagny.id.toString()} />
       <ClientsList company_id={company.compagny.id.toString()} /> */}
-      {/* <CreateCarForm company_id={company.compagny.id.toString()} /> */}
-      {/* <CreateInvoiceForm company_id={company.compagny.id.toString()} /> */}
-      {company && (
-        <SelectCar
-          company_id={company.compagny.id.toString()}
-          setCarId={setCarId}
-        />
-      )}
-      {company && (
-        <SelectClient
-          company_id={company.compagny.id.toString()}
-          setClientId={setClientId}
-        />
-      )}
-    </div>
+        {/* <CreateCarForm company_id={company.compagny.id.toString()} /> */}
+        {/* <CreateInvoiceForm company_id={company.compagny.id.toString()} /> */}
+        {company && (
+          <SelectCar
+            company_id={company.compagny.id.toString()}
+            setCarId={setCarId}
+          />
+        )}
+        {company && (
+          <SelectClient
+            company_id={company.compagny.id.toString()}
+            setClientId={setClientId}
+          />
+        )}
+      </div>
+    </UserContext.Provider>
   );
 }

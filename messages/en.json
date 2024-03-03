@@ -48,7 +48,8 @@
       "mobile": "Mobile number",
       "website": "Website",
       "create_client": "Create client",
-      "select_client": "Select client"
+      "select_client": "Select client",
+      "no_client_yet": "No client yet"
     }
     ,
     "Car": {
@@ -70,7 +71,8 @@
       "car_pass": "Car pass",
       "register_cert": "Registration certificate",
       "create_car": "Create car",
-      "select_car": "Select car"
+      "select_car": "Select car",
+      "no_car_yet": "No car yet"
     }
     ,
     "Invoice": {

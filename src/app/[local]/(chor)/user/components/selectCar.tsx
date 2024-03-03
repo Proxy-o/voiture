@@ -1,6 +1,6 @@
 "use client";
-import React, { useState } from "react";
-import CarView from "./carView";
+import React, { useContext, useState } from "react";
+import CarView, { Car } from "./carView";
 import { api } from "~/trpc/react";
 import {
   Select,
@@ -11,6 +11,7 @@ import {
 } from "~/components/ui/select";
 import { useTranslations } from "next-intl";
 import { ArrowRight, X } from "lucide-react";
+import { UserContext } from "../context/userContext";
 
 export default function SelectCar({
   company_id,
@@ -19,16 +20,15 @@ export default function SelectCar({
   company_id: string;
   setCarId: React.Dispatch<React.SetStateAction<string>>;
 }) {
+  const [selectedCar, setSelectedCar] = useState<Car>();
+  const { isCarOpen, setIsCarOpen } = useContext(UserContext);
   const t = useTranslations("Car");
-  const [selectedCar, setSelectedCar] = useState<string>("");
   const { data: cars } = api.car.getCompanyCars.useQuery(parseInt(company_id));
-  // xport type of cars
-
-  const [isOpen, setIsOpen] = useState(false);
 
   const handelCarChange = (id: string) => {
     setCarId(id);
-    setSelectedCar(id);
+    const car = cars?.find((car) => car.id.toString() === id);
+    setSelectedCar(car);
   };
 
   return (
@@ -37,7 +37,7 @@ export default function SelectCar({
         {cars && cars.length > 0 ? (
           <Select
             onValueChange={handelCarChange}
-            onOpenChange={() => setIsOpen(true)}
+            onOpenChange={() => setIsCarOpen(true)}
           >
             <SelectTrigger className="w-full">
               <div>
@@ -53,17 +53,14 @@ export default function SelectCar({
             </SelectContent>
           </Select>
         ) : (
-          <p>No cars available</p>
+          <p>{t("no_car_yet")}</p>
         )}
       </div>
-      {cars && cars.length > 0 && isOpen && parseInt(selectedCar) > 0 && (
+
+      {isCarOpen && selectedCar && (
         <div className="flex items-center transition delay-150 ease-in-out">
-          <ArrowRight onClick={() => setIsOpen(false)} />
-          <CarView
-            car={
-              cars.find((car) => car.id.toString() === selectedCar) ?? cars[0]
-            }
-          />
+          <ArrowRight onClick={() => setIsCarOpen(false)} />
+          <CarView selectedCar={selectedCar} />
         </div>
       )}
     </div>
