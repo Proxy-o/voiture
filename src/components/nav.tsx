@@ -38,7 +38,13 @@ export default function Nav() {
     },
     {
       title: u("add_client"),
-      link: "/user",
+      link: "/user/client",
+      icon: GamepadIcon,
+      variant: "ghost",
+    },
+    {
+      title: u("add_car"),
+      link: "/user/car",
       icon: GamepadIcon,
       variant: "ghost",
     },
