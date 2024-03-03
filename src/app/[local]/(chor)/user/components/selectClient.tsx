@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import CarView from "./carView";
 import { api } from "~/trpc/react";
 import {
@@ -12,6 +12,7 @@ import {
 import { useTranslations } from "next-intl";
 import { ArrowRight } from "lucide-react";
 import ClientView from "./clientView";
+import { UserContext } from "../context/userContext";
 
 export default function SelectClient({
   company_id,
@@ -25,11 +26,17 @@ export default function SelectClient({
   const { data: clients } = api.client.getCompanyClients.useQuery(
     parseInt(company_id),
   );
-  const [isOpen, setIsOpen] = useState(false);
+  const { isClientOpen, setClientIsOpen, setIsCarOpen } =
+    useContext(UserContext);
 
   const handelClientChange = (id: string) => {
     setClientId(id);
     setSelectedClient(id);
+    setIsCarOpen(false);
+  };
+  const handelOpenChange = () => {
+    setClientIsOpen(true);
+    setIsCarOpen(false);
   };
 
   return (
@@ -38,7 +45,7 @@ export default function SelectClient({
         {clients && clients.length > 0 ? (
           <Select
             onValueChange={handelClientChange}
-            onOpenChange={() => setIsOpen(true)}
+            onOpenChange={handelOpenChange}
           >
             <SelectTrigger className="w-full">
               <div>
@@ -59,10 +66,10 @@ export default function SelectClient({
       </div>
       {clients &&
         clients.length > 0 &&
-        isOpen &&
+        isClientOpen &&
         parseInt(selectedClient) > 0 && (
           <div className="flex items-center transition delay-150 ease-in-out">
-            <ArrowRight onClick={() => setIsOpen(false)} />
+            <ArrowRight onClick={() => setClientIsOpen(false)} />
             <ClientView
               client={
                 clients.find((car) => car.id.toString() === selectedClient) ??

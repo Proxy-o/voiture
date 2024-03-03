@@ -21,14 +21,18 @@ export default function SelectCar({
   setCarId: React.Dispatch<React.SetStateAction<string>>;
 }) {
   const [selectedCar, setSelectedCar] = useState<Car>();
-  const { isCarOpen, setIsCarOpen } = useContext(UserContext);
+  const { isCarOpen, setIsCarOpen, setClientIsOpen } = useContext(UserContext);
   const t = useTranslations("Car");
   const { data: cars } = api.car.getCompanyCars.useQuery(parseInt(company_id));
 
   const handelCarChange = (id: string) => {
     setCarId(id);
-    const car = cars?.find((car) => car.id.toString() === id);
+    const car = cars?.find((car: Car) => car.id.toString() === id);
     setSelectedCar(car);
+  };
+  const handelOpenChange = () => {
+    setIsCarOpen(false);
+    setIsCarOpen(true);
   };
 
   return (
@@ -37,7 +41,7 @@ export default function SelectCar({
         {cars && cars.length > 0 ? (
           <Select
             onValueChange={handelCarChange}
-            onOpenChange={() => setIsCarOpen(true)}
+            onOpenChange={handelOpenChange}
           >
             <SelectTrigger className="w-full">
               <div>

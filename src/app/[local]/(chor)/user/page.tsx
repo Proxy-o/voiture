@@ -29,8 +29,11 @@ export default function Page() {
     redirect("/login");
   }
   const [isCarOpen, setIsCarOpen] = useState(false);
+  const [isClientOpen, setClientIsOpen] = useState(false);
   return (
-    <UserContext.Provider value={{ isCarOpen, setIsCarOpen }}>
+    <UserContext.Provider
+      value={{ isCarOpen, setIsCarOpen, isClientOpen, setClientIsOpen }}
+    >
       <div>
         {/* <CreateClientForm company_id={company.compagny.id.toString()} />
       <ClientsList company_id={company.compagny.id.toString()} /> */}

@@ -5,4 +5,8 @@ export const UserContext = createContext({
   setIsCarOpen: (value: boolean) => {
     // Provide an implementation for the method
   },
+  isClientOpen: false,
+  setClientIsOpen: (value: boolean) => {
+    // Provide an implementation for the method
+  },
 });
