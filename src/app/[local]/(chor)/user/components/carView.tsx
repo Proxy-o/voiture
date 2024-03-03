@@ -6,10 +6,33 @@ import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
 import { type createCarSchema } from "~/server/api/types";
 
-// add id to carSchema
-type carSchema = z.infer<typeof createCarSchema> & { id: number };
-export default function CarView({ car }: { car: carSchema }) {
+// carSchema can be undefined
+type carSchema = {
+  id: bigint;
+  chassis_number: string;
+  brand: string;
+  model: string;
+  car_type: string;
+  transmission: string;
+  first_registration: Date;
+  mileage: number;
+  engine_power: number;
+  cylinder: number;
+  fuel: string;
+  co2: string;
+  color: string;
+  number_keys: number;
+  cer_of_conf: boolean;
+  inspection_form: boolean;
+  car_pass: boolean;
+  register_cert: boolean;
+};
+
+export default function CarView({ car }: { car: carSchema | undefined }) {
   const t = useTranslations("Car");
+  if (!car) {
+    return <Card>{t("no_car")}</Card>;
+  }
   return (
     <Card className="  grid  h-screen w-full gap-2 overflow-auto p-2 md:grid-cols-2">
       <div className="space-y-2 border p-2 shadow-md">

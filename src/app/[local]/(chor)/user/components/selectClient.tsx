@@ -20,7 +20,7 @@ export default function SelectClient({
   company_id: string;
   setClientId: React.Dispatch<React.SetStateAction<string>>;
 }) {
-  const t = useTranslations("Car");
+  const t = useTranslations("Client");
   const [selectedClient, setSelectedClient] = useState<string>("");
   const { data: clients } = api.client.getCompanyClients.useQuery(
     parseInt(company_id),
@@ -42,7 +42,7 @@ export default function SelectClient({
           >
             <SelectTrigger className="w-full">
               <div>
-                <SelectValue placeholder={t("select_car")} />
+                <SelectValue placeholder={t("select_client")} />
               </div>
             </SelectTrigger>
             <SelectContent>

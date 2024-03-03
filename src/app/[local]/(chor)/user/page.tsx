@@ -36,12 +36,12 @@ export default function Page() {
       <ClientsList company_id={company.compagny.id.toString()} /> */}
       {/* <CreateCarForm company_id={company.compagny.id.toString()} /> */}
       {/* <CreateInvoiceForm company_id={company.compagny.id.toString()} /> */}
-      {/* {company && (
+      {company && (
         <SelectCar
           company_id={company.compagny.id.toString()}
           setCarId={setCarId}
         />
-      )} */}
+      )}
       {company && (
         <SelectClient
           company_id={company.compagny.id.toString()}

@@ -47,7 +47,8 @@
       "phone": "Phone number",
       "mobile": "Mobile number",
       "website": "Website",
-      "create_client": "Create client"
+      "create_client": "Create client",
+      "select_client": "Select client"
     }
     ,
     "Car": {

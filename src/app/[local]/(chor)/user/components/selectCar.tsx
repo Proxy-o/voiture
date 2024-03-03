@@ -22,6 +22,8 @@ export default function SelectCar({
   const t = useTranslations("Car");
   const [selectedCar, setSelectedCar] = useState<string>("");
   const { data: cars } = api.car.getCompanyCars.useQuery(parseInt(company_id));
+  // xport type of cars
+
   const [isOpen, setIsOpen] = useState(false);
 
   const handelCarChange = (id: string) => {
