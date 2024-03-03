@@ -4,28 +4,9 @@ import { type z } from "zod";
 import { Card } from "~/components/ui/card";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
+import type { Car } from "../../types";
 
 // carSchema can be undefined
-export type Car = {
-  id: bigint;
-  chassis_number: string;
-  brand: string;
-  model: string;
-  car_type: string;
-  transmission: string;
-  first_registration: Date;
-  mileage: number;
-  engine_power: number;
-  cylinder: number;
-  fuel: string;
-  co2: string;
-  color: string;
-  number_keys: number;
-  cer_of_conf: boolean;
-  inspection_form: boolean;
-  car_pass: boolean;
-  register_cert: boolean;
-};
 
 export default function CarView({
   selectedCar,

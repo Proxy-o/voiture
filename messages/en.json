@@ -55,6 +55,7 @@
     "client_info": "Client information"
   },
   "Car": {
+    "car": "Car",
     "chassis_number": "Chassis number",
     "brand": "Brand",
     "model": "Model",
@@ -85,6 +86,17 @@
     "payment_method": "Payment method",
     "paid_status": "Paid status",
     "memo": "Memo",
-    "create_invoice": "Create invoice"
+    "create_invoice": "Create invoice",
+    "bill_to": "Bill to",
+    "invoice_date": "Invoice date",
+    "invoice_due_date": "Invoice due date",
+    "invoice": "Invoice",
+    "company_name": "Company name",
+    "client_name": "Client name",
+    "pending": "Pending",
+    "paid": "Paid"
+  
+
   }
+  
 }

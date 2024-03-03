@@ -4,24 +4,8 @@ import { type z } from "zod";
 import { Card } from "~/components/ui/card";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
-import { type createClientSchema } from "~/server/api/types";
+import type { Client } from "../../types";
 
-// add id to carSchema
-export type Client = {
-  id: bigint;
-  is_company: boolean;
-  surname: string | null;
-  firstname: string | null;
-  company_name: string | null;
-  btw_number: string | null;
-  street: string;
-  postal_code: string;
-  city: string;
-  country: string;
-  email: string | null;
-  phone_number: string | null;
-  mobile_number: string | null;
-};
 export default function ClientView({ client }: { client: Client | undefined }) {
   const t = useTranslations("Client");
   if (!client) {

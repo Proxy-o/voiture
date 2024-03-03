@@ -42,6 +42,11 @@ export const invoiceRouter = createTRPCRouter({
         where: {
           id: input,
         },
+        include: {
+          client: true,
+          car: true,
+          settings: true,
+        },
       });
     }),
 });
