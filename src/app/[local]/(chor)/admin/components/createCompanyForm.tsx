@@ -48,7 +48,6 @@ export default function CreateCompanyForm() {
   });
 
   function onSubmit(values: z.infer<typeof createCompanySchema>) {
-    console.log(values);
     submit(values);
   }
 

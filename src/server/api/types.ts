@@ -100,8 +100,8 @@ export const createCarSchema = z.object({
 
 export const createInvoiceSchema = z.object({
   client_id: z.string().optional(),
-  car_id: z.string(),
-  company_id: z.string(),
+  car_id: z.string().optional(),
+  company_id: z.string().optional(),
 
   date: z.coerce.date().max(new Date(), "Date cannot be in the future"),
   due_date: z.coerce.date(),

@@ -66,7 +66,11 @@ export default function Page() {
                 setClientId={setClientId}
               />
             </>
-            <CreateInvoiceForm company_id={company.compagny.id.toString()} />
+            <CreateInvoiceForm
+              company_id={company.compagny.id.toString()}
+              car_id={selectedCar?.id.toString()}
+              client_id={selectedClient?.id.toString()}
+            />
           </div>
         )}
         <div>

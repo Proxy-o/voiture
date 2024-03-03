@@ -36,7 +36,6 @@ export default function CarView({
   if (!selectedCar) {
     return <div>{t("no_car_yet")}</div>;
   }
-  console.log("oh yeh", selectedCar);
   return (
     <Card className="  grid  h-screen w-full gap-2 overflow-auto p-2 md:grid-cols-2">
       <div className="space-y-2 border p-2 shadow-md">

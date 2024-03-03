@@ -21,16 +21,20 @@ import { createInvoiceSchema } from "~/server/api/types";
 
 export default function CreateInvoiceForm({
   company_id,
+  car_id,
+  client_id,
 }: {
   company_id: string;
+  car_id: string | undefined;
+  client_id: string | undefined;
 }) {
   const t = useTranslations("Invoice");
   const form = useForm<z.infer<typeof createInvoiceSchema>>({
     resolver: zodResolver(createInvoiceSchema),
     defaultValues: {
       company_id,
-      client_id: "",
-      car_id: "",
+      client_id,
+      car_id,
       date: new Date(),
       due_date: new Date(),
       advance: 0,
@@ -40,10 +44,13 @@ export default function CreateInvoiceForm({
       memo: "",
     },
   });
-  const { mutate: submit } = api.user.addInvoice.useMutation();
+  const { mutate: submit } = api.invoice.addInvoice.useMutation();
   function onSubmit(values: z.infer<typeof createInvoiceSchema>) {
     submit({
       ...values,
+      company_id,
+      car_id,
+      client_id,
     });
   }
 
@@ -118,7 +125,9 @@ export default function CreateInvoiceForm({
           control={form.control}
           placeholder={t("memo")}
         />
-        <Button type="submit">{t("create_invoice")}</Button>
+        <Button type="submit" disabled={!client_id || !car_id}>
+          {t("create_invoice")}{" "}
+        </Button>
       </form>
     </Form>
   );
