@@ -1,11 +1,14 @@
-import React, { createContext } from "react";
-export const UserContext = createContext({
-  isCarOpen: false,
-  setIsCarOpen: (value: boolean) => {
-    // Provide an implementation for the method
-  },
-  isClientOpen: false,
-  setClientIsOpen: (value: boolean) => {
-    // Provide an implementation for the method
-  },
-});
+import { createContext } from "react";
+import type { Car } from "../components/carView";
+import type { Client } from "../components/clientView";
+export type UserContextType = {
+  isCarOpen: boolean;
+  setIsCarOpen: (value: boolean) => void;
+  isClientOpen: boolean;
+  setClientIsOpen: (value: boolean) => void;
+  selectedCar: Car | undefined;
+  setSelectedCar: (value: Car | undefined) => void;
+  selectedClient: Client | undefined;
+  setSelectedClient: (value: Client | undefined) => void;
+};
+export const UserContext = createContext<UserContextType | null>(null);

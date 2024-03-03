@@ -20,8 +20,13 @@ export default function SelectCar({
   company_id: string;
   setCarId: React.Dispatch<React.SetStateAction<string>>;
 }) {
-  const [selectedCar, setSelectedCar] = useState<Car>();
-  const { isCarOpen, setIsCarOpen, setClientIsOpen } = useContext(UserContext);
+  const {
+    isCarOpen,
+    setIsCarOpen,
+    setClientIsOpen,
+    setSelectedCar,
+    selectedCar,
+  } = useContext(UserContext)!;
   const t = useTranslations("Car");
   const { data: cars } = api.car.getCompanyCars.useQuery(parseInt(company_id));
 
@@ -60,13 +65,6 @@ export default function SelectCar({
           <p>{t("no_car_yet")}</p>
         )}
       </div>
-
-      {isCarOpen && selectedCar && (
-        <div className="flex items-center transition delay-150 ease-in-out">
-          <ArrowRight onClick={() => setIsCarOpen(false)} />
-          <CarView selectedCar={selectedCar} />
-        </div>
-      )}
     </div>
   );
 }

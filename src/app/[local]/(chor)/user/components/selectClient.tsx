@@ -11,7 +11,7 @@ import {
 import { useTranslations } from "next-intl";
 import { ArrowRight } from "lucide-react";
 import ClientView, { type Client } from "./clientView";
-import { UserContext } from "../context/userContext";
+import { UserContext, UserContextType } from "../context/userContext";
 
 export default function SelectClient({
   company_id,
@@ -21,12 +21,16 @@ export default function SelectClient({
   setClientId: React.Dispatch<React.SetStateAction<string>>;
 }) {
   const t = useTranslations("Client");
-  const [selectedClient, setSelectedClient] = useState<Client>();
   const { data: clients } = api.client.getCompanyClients.useQuery(
     parseInt(company_id),
   );
-  const { isClientOpen, setClientIsOpen, setIsCarOpen } =
-    useContext(UserContext);
+  const {
+    isClientOpen,
+    setClientIsOpen,
+    setIsCarOpen,
+    selectedClient,
+    setSelectedClient,
+  } = useContext(UserContext)!;
 
   const handelClientChange = (id: string) => {
     setClientId(id);
@@ -66,12 +70,6 @@ export default function SelectClient({
           <p>{t("no_client_yet")}</p>
         )}
       </div>
-      {isClientOpen && selectedClient && (
-        <div className="flex items-center transition delay-150 ease-in-out">
-          <ArrowRight onClick={() => setClientIsOpen(false)} />
-          <ClientView client={selectedClient} />
-        </div>
-      )}
     </div>
   );
 }
