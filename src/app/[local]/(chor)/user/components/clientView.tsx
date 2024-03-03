@@ -28,9 +28,9 @@ export default function ClientView({ client }: { client: Client | undefined }) {
     return <Card>{t("no_client")}</Card>;
   }
   return (
-    <div>
+    <div className="h-screen overflow-auto ">
       <p className="text-center font-bold">{t("client_info")}</p>
-      <Card className="  grid  h-screen w-full gap-2 overflow-auto p-2 md:grid-cols-2">
+      <Card className="  grid  w-full gap-2  p-2 md:grid-cols-2">
         <div className="space-y-2 border p-2 shadow-md">
           <Label className="font-light">{t("surname")}</Label>
           <Input disabled value={client.surname ?? ""} />

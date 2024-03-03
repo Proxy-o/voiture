@@ -31,7 +31,9 @@
     "password": "password",
     "company_name": "Company name",
     "create_user": "Create user",
-    "add_client": "Add client"
+    "add_client": "Add client",
+    "add_car": "Add car",
+    "add_invoice": "Add invoice"
   },
   "Client": {
     "is_company": "Is a company?",

@@ -1,14 +1,14 @@
 "use client";
 import React, { useState } from "react";
 import { redirect } from "next/navigation";
-import CreateInvoiceForm from "./components/createInvoiceForm";
-import SelectCar from "./components/selectCar";
+import CreateInvoiceForm from "../components/createInvoiceForm";
+import SelectCar from "../components/selectCar";
 import { useSession } from "~/app/_context/SessionContext";
 import { api } from "~/trpc/react";
-import SelectClient from "./components/selectClient";
-import { UserContext } from "./context/userContext";
-import CarView, { type Car } from "./components/carView";
-import ClientView, { type Client } from "./components/clientView";
+import SelectClient from "../components/selectClient";
+import { UserContext } from "../context/userContext";
+import CarView, { type Car } from "../components/carView";
+import ClientView, { type Client } from "../components/clientView";
 import { ArrowRight } from "lucide-react";
 
 export default function Page() {
@@ -43,18 +43,18 @@ export default function Page() {
         setSelectedClient,
       }}
     >
-      <div className="flex">
+      <div className="flex ">
         {company && (
-          <div className="flex-1 space-y-2">
-            <>
-              <SelectCar company_id={company.compagny.id.toString()} />
-              <SelectClient company_id={company.compagny.id.toString()} />
-            </>
-            <CreateInvoiceForm
-              company_id={company.compagny.id.toString()}
-              car_id={selectedCar?.id.toString()}
-              client_id={selectedCar?.id.toString()}
-            />
+          <div className="flex flex-1 flex-col space-y-2 ">
+            <SelectCar company_id={company.compagny.id.toString()} />
+            <SelectClient company_id={company.compagny.id.toString()} />
+            <div className="flex-1 ">
+              <CreateInvoiceForm
+                company_id={company.compagny.id.toString()}
+                car_id={selectedCar?.id.toString()}
+                client_id={selectedCar?.id.toString()}
+              />
+            </div>
           </div>
         )}
         <div>

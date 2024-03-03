@@ -1,6 +1,6 @@
 "use client";
-import React, { useContext, useState } from "react";
-import CarView, { type Car } from "./carView";
+import React, { useContext } from "react";
+import { type Car } from "./carView";
 import { api } from "~/trpc/react";
 import {
   Select,
@@ -10,28 +10,15 @@ import {
   SelectValue,
 } from "~/components/ui/select";
 import { useTranslations } from "next-intl";
-import { ArrowRight, X } from "lucide-react";
 import { UserContext } from "../context/userContext";
 
-export default function SelectCar({
-  company_id,
-  setCarId,
-}: {
-  company_id: string;
-  setCarId: React.Dispatch<React.SetStateAction<string>>;
-}) {
-  const {
-    isCarOpen,
-    setIsCarOpen,
-    setClientIsOpen,
-    setSelectedCar,
-    selectedCar,
-  } = useContext(UserContext)!;
+export default function SelectCar({ company_id }: { company_id: string }) {
+  const { setIsCarOpen, setClientIsOpen, setSelectedCar } =
+    useContext(UserContext)!;
   const t = useTranslations("Car");
   const { data: cars } = api.car.getCompanyCars.useQuery(parseInt(company_id));
 
   const handelCarChange = (id: string) => {
-    setCarId(id);
     const car = cars?.find((car: Car) => car.id.toString() === id);
     setSelectedCar(car);
   };
@@ -41,7 +28,7 @@ export default function SelectCar({
   };
 
   return (
-    <div className="flex border">
+    <div className="flex ">
       <div className="flex-1">
         {cars && cars.length > 0 ? (
           <Select

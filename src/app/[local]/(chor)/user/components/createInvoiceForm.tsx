@@ -56,75 +56,80 @@ export default function CreateInvoiceForm({
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className=" ">
-        <FormField
-          control={form.control}
-          name={"date"}
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className="w-1/2">{t("date")}</FormLabel>
-              <FormControl>
-                <Input
-                  type="date"
-                  {...field}
-                  value={field.value.toString()}
-                  className="w-full"
-                />
-              </FormControl>
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="flex  h-full flex-1 flex-col rounded-sm border"
+      >
+        <div className=" flex-1 ">
+          <FormField
+            control={form.control}
+            name={"date"}
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="w-1/2">{t("date")}</FormLabel>
+                <FormControl>
+                  <Input
+                    type="date"
+                    {...field}
+                    value={field.value.toString()}
+                    className="w-full"
+                  />
+                </FormControl>
 
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name={"due_date"}
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className="w-1/2">{t("due_date")}</FormLabel>
-              <FormControl>
-                <Input
-                  type="date"
-                  {...field}
-                  value={field.value.toString()}
-                  className="w-full"
-                />
-              </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name={"due_date"}
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="w-1/2">{t("due_date")}</FormLabel>
+                <FormControl>
+                  <Input
+                    type="date"
+                    {...field}
+                    value={field.value.toString()}
+                    className="w-full"
+                  />
+                </FormControl>
 
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <CustomField
-          label={t("advance")}
-          name="advance"
-          control={form.control}
-          placeholder={t("advance")}
-        />
-        <CustomField
-          label={t("amount")}
-          name="amount"
-          control={form.control}
-          placeholder={t("amount")}
-        />
-        <CustomField
-          label={t("payment_method")}
-          name="payment_method"
-          control={form.control}
-          placeholder={t("payment_method")}
-        />
-        <CustomField
-          label={t("paid_status")}
-          name="paid_status"
-          control={form.control}
-          placeholder={t("paid_status")}
-        />
-        <CustomField
-          label={t("memo")}
-          name="memo"
-          control={form.control}
-          placeholder={t("memo")}
-        />
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <CustomField
+            label={t("advance")}
+            name="advance"
+            control={form.control}
+            placeholder={t("advance")}
+          />
+          <CustomField
+            label={t("amount")}
+            name="amount"
+            control={form.control}
+            placeholder={t("amount")}
+          />
+          <CustomField
+            label={t("payment_method")}
+            name="payment_method"
+            control={form.control}
+            placeholder={t("payment_method")}
+          />
+          <CustomField
+            label={t("paid_status")}
+            name="paid_status"
+            control={form.control}
+            placeholder={t("paid_status")}
+          />
+          <CustomField
+            label={t("memo")}
+            name="memo"
+            control={form.control}
+            placeholder={t("memo")}
+          />
+        </div>
         <Button type="submit" disabled={!client_id || !car_id}>
           {t("create_invoice")}{" "}
         </Button>

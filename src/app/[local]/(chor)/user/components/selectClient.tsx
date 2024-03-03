@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { api } from "~/trpc/react";
 import {
   Select,
@@ -9,31 +9,18 @@ import {
   SelectValue,
 } from "~/components/ui/select";
 import { useTranslations } from "next-intl";
-import { ArrowRight } from "lucide-react";
-import ClientView, { type Client } from "./clientView";
-import { UserContext, UserContextType } from "../context/userContext";
+import { type Client } from "./clientView";
+import { UserContext } from "../context/userContext";
 
-export default function SelectClient({
-  company_id,
-  setClientId,
-}: {
-  company_id: string;
-  setClientId: React.Dispatch<React.SetStateAction<string>>;
-}) {
+export default function SelectClient({ company_id }: { company_id: string }) {
   const t = useTranslations("Client");
   const { data: clients } = api.client.getCompanyClients.useQuery(
     parseInt(company_id),
   );
-  const {
-    isClientOpen,
-    setClientIsOpen,
-    setIsCarOpen,
-    selectedClient,
-    setSelectedClient,
-  } = useContext(UserContext)!;
+  const { setClientIsOpen, setIsCarOpen, setSelectedClient } =
+    useContext(UserContext)!;
 
   const handelClientChange = (id: string) => {
-    setClientId(id);
     const client = clients?.find(
       (client: Client) => client.id.toString() === id,
     );
@@ -46,7 +33,7 @@ export default function SelectClient({
   };
 
   return (
-    <div className="flex border">
+    <div className="flex ">
       <div className="flex-1">
         {clients && clients.length > 0 ? (
           <Select

@@ -43,8 +43,8 @@ export default function Nav() {
       variant: "ghost",
     },
     {
-      title: "chat",
-      link: "/chat",
+      title: u("add_invoice"),
+      link: "/user/invoice",
       icon: Send,
       variant: "ghost",
     },
