@@ -45,7 +45,7 @@ export default function CreateClientForm({
     },
   });
 
-  const { mutate: submit } = api.user.addClient.useMutation();
+  const { mutate: submit } = api.client.addClient.useMutation();
 
   function onSubmit(values: z.infer<typeof createClientSchema>) {
     submit({

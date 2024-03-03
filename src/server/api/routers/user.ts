@@ -55,32 +55,6 @@ export const userRouter = createTRPCRouter({
       });
     }),
 
-  addClient: protectedProcedure
-    .input(createClientSchema)
-    .mutation(async ({ input, ctx }) => {
-      return ctx.db.client.create({
-        data: {
-          is_company: input.is_company,
-          surname: input.surname,
-          firstname: input.firstname,
-          company_name: input.company_name,
-          btw_number: input.btw_number,
-          street: input.street,
-          postal_code: input.postal_code,
-          city: input.city,
-          country: input.country,
-          email: input.email,
-          phone_number: input.phone,
-          mobile_number: input.mobile,
-          settings: {
-            connect: {
-              id: Number(input.company_id),
-            },
-          },
-        },
-      });
-    }),
-
   addInvoice: protectedProcedure
     .input(createInvoiceSchema)
     .mutation(async ({ input, ctx }) => {
