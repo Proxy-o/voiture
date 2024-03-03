@@ -58,7 +58,7 @@ export default function CreateInvoiceForm({
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="flex  h-full flex-1 flex-col rounded-sm border"
+        className="flex  h-full flex-1 flex-col rounded-sm border p-2"
       >
         <div className=" flex-1 ">
           <FormField

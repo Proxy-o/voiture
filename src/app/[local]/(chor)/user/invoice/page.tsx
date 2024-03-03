@@ -45,7 +45,7 @@ export default function Page() {
     >
       <div className="flex ">
         {company && (
-          <div className="flex flex-1 flex-col space-y-2 ">
+          <div className="flex flex-1 flex-col space-y-2 p-2">
             <SelectCar company_id={company.compagny.id.toString()} />
             <SelectClient company_id={company.compagny.id.toString()} />
             <div className="flex-1 ">
@@ -60,13 +60,19 @@ export default function Page() {
         <div>
           {isCarOpen && selectedCar && (
             <div className="flex items-center ">
-              <ArrowRight onClick={() => setIsCarOpen(false)} />
+              <ArrowRight
+                onClick={() => setIsCarOpen(false)}
+                className="cursor-pointer"
+              />
               <CarView selectedCar={selectedCar} />
             </div>
           )}
           {isClientOpen && selectedClient && (
             <div className="flex items-center ">
-              <ArrowRight onClick={() => setClientIsOpen(false)} />
+              <ArrowRight
+                onClick={() => setClientIsOpen(false)}
+                className="cursor-pointer"
+              />
               <ClientView client={selectedClient} />
             </div>
           )}
