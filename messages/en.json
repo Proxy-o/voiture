@@ -30,7 +30,8 @@
     "email": "email",
     "password": "password",
     "company_name": "Company name",
-    "create_user": "Create user"
+    "create_user": "Create user",
+    "add_client": "Add client"
   },
   "Client": {
     "is_company": "Is a company?",

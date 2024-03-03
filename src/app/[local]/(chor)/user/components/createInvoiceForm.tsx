@@ -56,7 +56,7 @@ export default function CreateInvoiceForm({
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className=" ">
         <FormField
           control={form.control}
           name={"date"}
