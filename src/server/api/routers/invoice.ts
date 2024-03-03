@@ -1,6 +1,7 @@
 import { createInvoiceSchema } from "~/server/api/types";
 
 import { createTRPCRouter, protectedProcedure } from "~/server/api/trpc";
+import { z } from "zod";
 
 export const invoiceRouter = createTRPCRouter({
   addInvoice: protectedProcedure
@@ -30,6 +31,16 @@ export const invoiceRouter = createTRPCRouter({
           payment_method: input.payment_method,
           paid_status: input.paid_status,
           memo: input.memo,
+        },
+      });
+    }),
+
+  getInvoice: protectedProcedure
+    .input(z.number())
+    .query(async ({ input, ctx }) => {
+      return ctx.db.invoice.findUnique({
+        where: {
+          id: input,
         },
       });
     }),
