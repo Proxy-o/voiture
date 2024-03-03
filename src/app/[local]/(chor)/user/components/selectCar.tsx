@@ -1,6 +1,6 @@
 "use client";
 import React, { useContext, useState } from "react";
-import CarView, { Car } from "./carView";
+import CarView, { type Car } from "./carView";
 import { api } from "~/trpc/react";
 import {
   Select,
@@ -31,7 +31,7 @@ export default function SelectCar({
     setSelectedCar(car);
   };
   const handelOpenChange = () => {
-    setIsCarOpen(false);
+    setClientIsOpen(false);
     setIsCarOpen(true);
   };
 

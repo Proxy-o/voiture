@@ -7,7 +7,7 @@ import { Label } from "~/components/ui/label";
 import { type createClientSchema } from "~/server/api/types";
 
 // add id to carSchema
-type clientSchema = {
+export type Client = {
   id: bigint;
   is_company: boolean;
   surname: string | null;
@@ -22,11 +22,7 @@ type clientSchema = {
   phone_number: string | null;
   mobile_number: string | null;
 };
-export default function ClientView({
-  client,
-}: {
-  client: clientSchema | undefined;
-}) {
+export default function ClientView({ client }: { client: Client | undefined }) {
   const t = useTranslations("Client");
   if (!client) {
     return <Card>{t("no_client")}</Card>;

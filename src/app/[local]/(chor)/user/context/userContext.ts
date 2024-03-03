@@ -1,5 +1,4 @@
 import React, { createContext } from "react";
-
 export const UserContext = createContext({
   isCarOpen: false,
   setIsCarOpen: (value: boolean) => {
