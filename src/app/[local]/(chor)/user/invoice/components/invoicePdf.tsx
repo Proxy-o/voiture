@@ -21,7 +21,9 @@ export default function InvoicePdf({
 }) {
   const t = useTranslations("Invoice");
   const c = useTranslations("Car");
-  const { toPDF, targetRef } = usePDF({ filename: "page.pdf" });
+  const { toPDF, targetRef } = usePDF({
+    filename: company.company_name + "_" + client.firstname,
+  });
 
   return (
     <>
