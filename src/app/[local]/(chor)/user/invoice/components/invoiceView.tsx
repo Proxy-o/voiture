@@ -50,7 +50,7 @@ export default async function InvoiceView({
         car={car}
         invoice={invoice}
       />
-      <Button>download</Button>
+      {/* <Button>download</Button> */}
     </div>
   );
 }
