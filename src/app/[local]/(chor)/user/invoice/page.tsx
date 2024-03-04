@@ -48,7 +48,7 @@ export default function Page() {
         setSelectedClient,
       }}
     >
-      <div className="flex  h-screen  " onClick={handleFormClick}>
+      <div className="flex  h-full  " onClick={handleFormClick}>
         {company && (
           <div className="flex flex-1 flex-col space-y-2 p-2">
             <SelectCar company_id={company.compagny.id.toString()} />

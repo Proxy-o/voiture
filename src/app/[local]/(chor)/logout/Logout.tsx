@@ -9,8 +9,9 @@ import { LogOut } from "lucide-react";
 export default async function Logout() {
   return (
     <form action={logout}>
-      <LogOut className="mr-2 h-6 w-6 " />
-      <Button>Sign out</Button>
+      <Button variant={"ghost"} type="submit">
+        <LogOut className="ml-2 text-sm" />
+      </Button>
     </form>
   );
 }
