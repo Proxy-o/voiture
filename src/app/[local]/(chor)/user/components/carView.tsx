@@ -1,7 +1,6 @@
 import React from "react";
 import { useTranslations } from "use-intl";
 import { type z } from "zod";
-import { Card } from "~/components/ui/card";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
 import type { Car } from "../../types";
@@ -18,9 +17,9 @@ export default function CarView({
     return <div>{t("no_car_yet")}</div>;
   }
   return (
-    <div className="h-screen overflow-auto ">
+    <div className="h-screen overflow-auto border-l shadow">
       <p className="text-center font-bold">{t("car_info")}</p>
-      <Card className="  grid  w-full gap-2  p-2 md:grid-cols-2">
+      <div className="  grid  w-full gap-2  p-2 md:grid-cols-2">
         <div className="space-y-2 border p-2 shadow-md">
           <Label className="font-light">{t("chassis_number")}</Label>
           <Input disabled value={selectedCar.chassis_number} />
@@ -90,7 +89,7 @@ export default function CarView({
           <Label className="font-light">{t("register_cert")}</Label>
           <Input disabled value={selectedCar.register_cert.toString()} />
         </div>
-      </Card>
+      </div>
     </div>
   );
 }

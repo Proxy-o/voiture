@@ -31,6 +31,10 @@ export default function Page() {
   const [isClientOpen, setClientIsOpen] = useState(false);
   const [selectedClient, setSelectedClient] = useState<Client>();
 
+  const handleFormClick = () => {
+    setIsCarOpen(false);
+    setClientIsOpen(false);
+  };
   return (
     <UserContext.Provider
       value={{
@@ -44,7 +48,7 @@ export default function Page() {
         setSelectedClient,
       }}
     >
-      <div className="flex ">
+      <div className="flex  h-screen  " onClick={handleFormClick}>
         {company && (
           <div className="flex flex-1 flex-col space-y-2 p-2">
             <SelectCar company_id={company.compagny.id.toString()} />
