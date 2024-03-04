@@ -4,17 +4,30 @@ import React from "react";
 import { Skeleton } from "~/components/ui/skeleton";
 import { validateRequest } from "~/server/lucia/validateRequests";
 import Logout from "~/app/[local]/(chor)/logout/Logout";
+import { api } from "~/trpc/server";
+import { redirect } from "next/navigation";
+import Image from "next/image";
 
 export default async function Header() {
   const { user } = await validateRequest();
+  if (!user) {
+    redirect("/login");
+  }
+  const curentUser = await api.user.getOne.query(parseInt(user.id));
 
   return (
     <header className=" sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 px-10 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className=" flex h-14  items-center">
         <div className="mr-4 flex">
           <Link className="mr-6 flex items-center space-x-2" href="/">
+            <Image
+              src={curentUser?.compagny.company_logo ?? ""}
+              alt="logo"
+              width={40}
+              height={40}
+            />
             <span className="hidden font-bold sm:inline-block">
-              1337 Typing
+              {curentUser?.compagny.company_name}
             </span>
           </Link>
 
@@ -25,7 +38,7 @@ export default async function Header() {
           {user ? (
             <nav className="flex cursor-pointer items-center">
               <Link href="/profile">
-                <span className="mr-2 text-primary">{user.username}</span>
+                <span className="mr-2 ">{user.username}</span>
               </Link>
               <Logout />
             </nav>

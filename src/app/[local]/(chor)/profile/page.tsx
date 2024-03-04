@@ -67,8 +67,8 @@ export default function Page() {
     setMounted(true);
   }, []);
   return (
-    <div>
-      <Card>
+    <div className="space-y-4">
+      <div>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="p-2">
             <FormField
@@ -134,13 +134,17 @@ export default function Page() {
                 {t("update_user")}
               </Button>
             ) : (
-              <Button type="submit" className="mt-2 w-full">
+              <Button
+                type="submit"
+                className="mt-2 w-full"
+                disabled={!form.formState.isValid}
+              >
                 {t("save")}
               </Button>
             )}
           </form>
         </Form>
-      </Card>
+      </div>
       <Card className="flex justify-around p-8">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>

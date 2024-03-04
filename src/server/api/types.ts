@@ -29,7 +29,7 @@ export const updateUserSchema = z.object({
   // optional email
   email: z.string().email().optional(),
 
-  password: z.string().optional(),
+  password: z.string().min(3).optional(),
 });
 
 export const createCompanySchema = z.object({

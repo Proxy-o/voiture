@@ -5,13 +5,22 @@ import { useForm } from "react-hook-form";
 import { createCompanySchema } from "../../../../../server/api/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import type { z } from "zod";
-import { Form } from "~/components/ui/form";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "~/components/ui/form";
 import { Button } from "~/components/ui/button";
 import { api } from "~/trpc/react";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import CustomField from "./customFiled";
 import { Card } from "~/components/ui/card";
+import { UploadButton, UploadDropzone } from "~/components/uploadthing";
+import { Input } from "~/components/ui/input";
 
 export default function CreateCompanyForm() {
   const t = useTranslations("Company");
@@ -56,12 +65,22 @@ export default function CreateCompanyForm() {
       <form onSubmit={form.handleSubmit(onSubmit)}>
         <div className="flex flex-col items-center gap-2   p-2">
           <Card className="flex min-w-full flex-col gap-6 p-6">
-            <p className="">{t("company_info")}</p>
-            <CustomField
-              control={form.control}
-              name="company_logo"
-              label={t("company_logo")}
-              placeholder={t("company_logo")}
+            <p className="text-2xl">{t("company_info")}</p>
+            <p className="">logo</p>
+
+            <UploadButton
+              endpoint="imageUploader"
+              onClientUploadComplete={(res) => {
+                // Do something with the response
+                console.log("Files: ", res[0]);
+                // set the the value of the logo
+                form.setValue("company_logo", res[0]!.url);
+                alert("Upload Completed");
+              }}
+              onUploadError={(error: Error) => {
+                // Do something with the error.
+                alert(`ERROR! ${error.message}`);
+              }}
             />
             <CustomField
               control={form.control}
@@ -187,7 +206,6 @@ export default function CreateCompanyForm() {
             />
           </Card>
         </div>
-
         <Button type="submit">{t("create_company")}</Button>
       </form>
     </Form>
