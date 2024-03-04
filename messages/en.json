@@ -36,7 +36,7 @@
     "add_invoice": "Add invoice"
   },
   "Client": {
-    "is_company": "Is a company?",
+    "is_company": "Is a company",
     "surname": "Surname",
     "first_name": "First name",
     "company_name": "Company name",
