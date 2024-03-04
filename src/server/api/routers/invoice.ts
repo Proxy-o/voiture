@@ -49,4 +49,20 @@ export const invoiceRouter = createTRPCRouter({
         },
       });
     }),
+  getAllInvoices: protectedProcedure
+    .input(z.number())
+    .query(async ({ input, ctx }) => {
+      return ctx.db.invoice.findMany({
+        where: {
+          settings: {
+            id: input,
+          },
+        },
+        include: {
+          client: true,
+          car: true,
+          settings: true,
+        },
+      });
+    }),
 });
