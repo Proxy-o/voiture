@@ -1,6 +1,13 @@
 "use client";
 import Link from "next/link";
-import { LogOut, type LucideIcon, UserRoundCog } from "lucide-react";
+import {
+  LogOut,
+  type LucideIcon,
+  UserRoundCog,
+  UserRoundPlus,
+  Car,
+  FileText,
+} from "lucide-react";
 import {
   Archive,
   User,
@@ -41,19 +48,19 @@ export default function Nav() {
     {
       title: u("add_client"),
       link: "/user/client",
-      icon: GamepadIcon,
+      icon: UserRoundPlus,
       variant: "ghost",
     },
     {
       title: u("add_car"),
       link: "/user/car",
-      icon: GamepadIcon,
+      icon: Car,
       variant: "ghost",
     },
     {
       title: u("add_invoice"),
       link: "/user/invoice",
-      icon: Send,
+      icon: FileText,
       variant: "ghost",
     },
     {
@@ -94,7 +101,7 @@ export default function Nav() {
   }, []);
 
   return (
-    <div className="group flex h-full  flex-col gap-4 border-r py-2 shadow-lg md:w-[8.5rem]">
+    <div className="group flex h-full  flex-col gap-4 border-r py-2 shadow-lg ">
       <nav className="flex h-full flex-col gap-1 px-2 ">
         {links.map((link, index) => (
           <Link
