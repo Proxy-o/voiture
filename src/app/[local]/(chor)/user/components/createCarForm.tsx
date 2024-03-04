@@ -18,6 +18,7 @@ import { api } from "~/trpc/react";
 import CustomField from "../../admin/components/customFiled";
 import { useTranslations } from "next-intl";
 import { createCarSchema } from "~/server/api/types";
+import { Card } from "~/components/ui/card";
 
 export default function CreateCarForm({ company_id }: { company_id: string }) {
   const t = useTranslations("Car");
@@ -52,132 +53,149 @@ export default function CreateCarForm({ company_id }: { company_id: string }) {
   }
 
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)}>
-        <CustomField
-          label={t("chassis_number")}
-          name="chassis_number"
-          control={form.control}
-          placeholder={t("chassis_number")}
-        />
-        <CustomField
-          label={t("brand")}
-          name="brand"
-          control={form.control}
-          placeholder={t("brand")}
-        />
-        <CustomField
-          label={t("model")}
-          name="model"
-          control={form.control}
-          placeholder={t("model")}
-        />
-        <CustomField
-          label={t("car_type")}
-          name="car_type"
-          control={form.control}
-          placeholder={t("car_type")}
-        />
-        <CustomField
-          label={t("transmission")}
-          name="transmission"
-          control={form.control}
-          placeholder={t("transmission")}
-        />
-        <FormField
-          control={form.control}
-          name={"first_registration"}
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className="w-1/2">{t("first_registration")}</FormLabel>
-              <FormControl>
-                <Input
-                  type="date"
-                  {...field}
-                  value={field.value.toString()}
-                  className="w-full"
-                />
-              </FormControl>
+    <>
+      <h1 className="text-2xl font-bold">{t("create_car")}</h1>
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2 p-2">
+          <Card className="grid grid-cols-2 gap-2 p-2">
+            <CustomField
+              label={t("chassis_number")}
+              name="chassis_number"
+              control={form.control}
+              placeholder={t("chassis_number")}
+            />
+            <CustomField
+              label={t("brand")}
+              name="brand"
+              control={form.control}
+              placeholder={t("brand")}
+            />
+            <CustomField
+              label={t("model")}
+              name="model"
+              control={form.control}
+              placeholder={t("model")}
+            />
+            <CustomField
+              label={t("car_type")}
+              name="car_type"
+              control={form.control}
+              placeholder={t("car_type")}
+            />
+          </Card>
+          <Card className="grid grid-cols-2 gap-2 p-2">
+            <CustomField
+              label={t("transmission")}
+              name="transmission"
+              control={form.control}
+              placeholder={t("transmission")}
+            />
+            <FormField
+              control={form.control}
+              name={"first_registration"}
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="w-1/2">
+                    {t("first_registration")}
+                  </FormLabel>
+                  <FormControl>
+                    <Input
+                      type="date"
+                      {...field}
+                      value={field.value.toString()}
+                      className="w-full"
+                    />
+                  </FormControl>
 
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name={"mileage"}
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className="w-1/2">{t("mileage")}</FormLabel>
-              <FormControl>
-                <Input type="number" {...field} className="w-full" />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <CustomField
-          label={t("engine_power")}
-          name="engine_power"
-          control={form.control}
-          placeholder={t("engine_power")}
-        />
-        <CustomField
-          label={t("cylinder")}
-          name="cylinder"
-          control={form.control}
-          placeholder={t("cylinder")}
-        />
-        <CustomField
-          label={t("fuel")}
-          name="fuel"
-          control={form.control}
-          placeholder={t("fuel")}
-        />
-        <CustomField
-          label={t("co2")}
-          name="co2"
-          control={form.control}
-          placeholder={t("co2")}
-        />
-        <CustomField
-          label={t("color")}
-          name="color"
-          control={form.control}
-          placeholder={t("color")}
-        />
-        <CustomField
-          label={t("number_keys")}
-          name="number_keys"
-          control={form.control}
-          placeholder={t("number_keys")}
-        />
-        <CustomField
-          label={t("cer_of_conf")}
-          name="cer_of_conf"
-          control={form.control}
-          placeholder={t("cer_of_conf")}
-        />
-        <CustomField
-          label={t("inspection_form")}
-          name="inspection_form"
-          control={form.control}
-          placeholder={t("inspection_form")}
-        />
-        <CustomField
-          label={t("car_pass")}
-          name="car_pass"
-          control={form.control}
-          placeholder={t("car_pass")}
-        />
-        <CustomField
-          label={t("register_cert")}
-          name="register_cert"
-          control={form.control}
-          placeholder={t("register_cert")}
-        />
-        <Button type="submit">{t("create_car")}</Button>
-      </form>
-    </Form>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name={"mileage"}
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="w-1/2">{t("mileage")}</FormLabel>
+                  <FormControl>
+                    <Input type="number" {...field} className="w-full" />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </Card>
+          <Card className="grid grid-cols-2 gap-2 p-2">
+            <CustomField
+              label={t("engine_power")}
+              name="engine_power"
+              control={form.control}
+              placeholder={t("engine_power")}
+            />
+            <CustomField
+              label={t("cylinder")}
+              name="cylinder"
+              control={form.control}
+              placeholder={t("cylinder")}
+            />
+            <CustomField
+              label={t("fuel")}
+              name="fuel"
+              control={form.control}
+              placeholder={t("fuel")}
+            />
+            <CustomField
+              label={t("co2")}
+              name="co2"
+              control={form.control}
+              placeholder={t("co2")}
+            />
+          </Card>
+          <Card className="grid grid-cols-2 gap-2 p-2">
+            <CustomField
+              label={t("color")}
+              name="color"
+              control={form.control}
+              placeholder={t("color")}
+            />
+            <CustomField
+              label={t("number_keys")}
+              name="number_keys"
+              control={form.control}
+              placeholder={t("number_keys")}
+            />
+            <CustomField
+              label={t("cer_of_conf")}
+              name="cer_of_conf"
+              control={form.control}
+              placeholder={t("cer_of_conf")}
+            />
+            <CustomField
+              label={t("inspection_form")}
+              name="inspection_form"
+              control={form.control}
+              placeholder={t("inspection_form")}
+            />
+          </Card>
+          <Card className="grid grid-cols-2 gap-2 p-2">
+            <CustomField
+              label={t("car_pass")}
+              name="car_pass"
+              control={form.control}
+              placeholder={t("car_pass")}
+            />
+            <CustomField
+              label={t("register_cert")}
+              name="register_cert"
+              control={form.control}
+              placeholder={t("register_cert")}
+            />
+          </Card>
+          <Button type="submit" className="w-full">
+            {t("create_car")}{" "}
+          </Button>
+        </form>
+      </Form>
+    </>
   );
 }
