@@ -1,6 +1,6 @@
 import { createContext } from "react";
-import type { Car } from "../components/carView";
-import type { Client } from "../components/clientView";
+import type { Car, Client } from "../../types";
+
 export type UserContextType = {
   isCarOpen: boolean;
   setIsCarOpen: (value: boolean) => void;

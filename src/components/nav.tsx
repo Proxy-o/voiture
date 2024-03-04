@@ -7,6 +7,7 @@ import {
   UserRoundPlus,
   Car,
   FileText,
+  CarFront,
 } from "lucide-react";
 import {
   Archive,
@@ -76,9 +77,15 @@ export default function Nav() {
       variant: "ghost",
     },
     {
-      title: "Friends",
-      link: "/friends",
+      title: u("client_list"),
+      link: "/user/client/list",
       icon: Users,
+      variant: "ghost",
+    },
+    {
+      title: u("car_list"),
+      link: "/user/car/list",
+      icon: CarFront,
       variant: "ghost",
     },
   ];

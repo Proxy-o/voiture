@@ -38,7 +38,9 @@
     "update_user": "Update",
     "save": "Save",
     "select_langue": "Select a language",
-    "select_mode": "Select a mode"
+    "select_mode": "Select a mode",
+    "client_list": "Client list",
+    "car_list": "Car list"
   },
   "Client": {
     "is_company": "Is a company",
