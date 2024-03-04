@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { LogOut, LucideIcon, UserRoundCog } from "lucide-react";
+import { LogOut, type LucideIcon, UserRoundCog } from "lucide-react";
 import {
   Archive,
   User,
@@ -17,6 +17,8 @@ import { cn } from "~/lib/utils";
 import { Button, buttonVariants } from "./ui/button";
 import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
+import { useEffect, useState } from "react";
+import { logout } from "~/app/[local]/(chor)/logout/Logout";
 
 interface linksProps {
   title: string;
@@ -61,8 +63,8 @@ export default function Nav() {
       variant: "ghost",
     },
     {
-      title: "Archive",
-      link: "/archive",
+      title: u("invoice_list"),
+      link: "/user/invoice/all",
       icon: Archive,
       variant: "ghost",
     },
@@ -74,6 +76,8 @@ export default function Nav() {
     },
   ];
   const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
   let path = usePathname();
   //   remove the local "en or fr" from the path
   path = path.replace(/\/(en|fr)/, "");
@@ -84,12 +88,13 @@ export default function Nav() {
     ...links[activeLink],
     variant: "default",
   };
-  const handleLogout = () => {
-    // logout();
-  };
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   return (
-    <div className="group flex h-screen flex-col gap-4 border py-2 shadow-lg md:w-[8.5rem]">
+    <div className="group flex h-full  flex-col gap-4 border-r py-2 shadow-lg md:w-[8.5rem]">
       <nav className="flex h-full flex-col gap-1 px-2 ">
         {links.map((link, index) => (
           <Link
@@ -118,32 +123,23 @@ export default function Nav() {
           <UserRoundCog className="mr-2 h-6 w-6 " />
           Sittings
         </Link>
-        <Button
-          variant={"ghost"}
-          className={cn(
-            buttonVariants({ variant: "ghost", size: "sm" }),
-            "mb-2 justify-start",
-          )}
-          onClick={() => handleLogout()}
-        >
-          <LogOut className="mr-2 h-6 w-6 " />
-          logout
-        </Button>
-        {/* add shose them them */}
-        <button
-          onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-          className={cn(
-            buttonVariants({ variant: "ghost", size: "sm" }),
-            "mb-2 justify-start text-primary",
-          )}
-        >
-          {theme === "dark" ? (
-            <Sun className="mr-2 h-6 w-6 " />
-          ) : (
-            <Moon className="mr-2 h-6 w-6 " />
-          )}
-          {theme === "dark" ? "Light" : "Dark"}
-        </button>
+
+        {mounted && (
+          <button
+            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            className={cn(
+              buttonVariants({ variant: "ghost", size: "sm" }),
+              "mb-2 justify-start text-primary",
+            )}
+          >
+            {theme === "dark" ? (
+              <Sun className="mr-2 h-6 w-6 " />
+            ) : (
+              <Moon className="mr-2 h-6 w-6 " />
+            )}
+            {theme === "dark" ? "Light" : "Dark"}
+          </button>
+        )}
       </div>
     </div>
   );

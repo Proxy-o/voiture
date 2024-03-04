@@ -33,7 +33,8 @@
     "create_user": "Create user",
     "add_client": "Add client",
     "add_car": "Add car",
-    "add_invoice": "Add invoice"
+    "add_invoice": "Add invoice",
+    "invoice_list": "Invoice list"
   },
   "Client": {
     "is_company": "Is a company",
@@ -93,8 +94,14 @@
     "invoice": "Invoice",
     "company_name": "Company name",
     "client_name": "Client name",
+    "client_email": "Client email",
     "pending": "Pending",
-    "paid": "Paid"
+    "paid": "Paid",
+    "list_of_invoices": "List of invoices",
+    "invoice_number": "Invoice number",
+    "action": "Action"
+
+
   
 
   }
