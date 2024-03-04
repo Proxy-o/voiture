@@ -66,7 +66,7 @@ export default function CreateUserForm() {
             <FormItem>
               <FormLabel>{t("password")}</FormLabel>
               <FormControl>
-                <Input placeholder={t("password")} {...field} />
+                <Input type="password" placeholder={t("password")} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>

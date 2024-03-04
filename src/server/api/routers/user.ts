@@ -5,6 +5,7 @@ import {
   createClientSchema,
   createInvoiceSchema,
   createUserSchema,
+  updateUserSchema,
 } from "~/server/api/types";
 
 import {
@@ -28,6 +29,22 @@ export const userRouter = createTRPCRouter({
               id: input.compagnyId,
             },
           },
+        },
+      });
+    }),
+  update: protectedProcedure
+    .input(z.object({ id: z.number(), data: updateUserSchema }))
+    .mutation(async ({ input, ctx }) => {
+      // if password is updated, hash it
+      if (input.data.password) {
+        input.data.password = await new Argon2id().hash(input.data.password);
+      }
+      return ctx.db.user.update({
+        where: {
+          id: input.id,
+        },
+        data: {
+          ...input.data,
         },
       });
     }),
