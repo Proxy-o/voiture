@@ -35,6 +35,7 @@
     "lucide-react": "^0.331.0",
     "next": "^14.0.4",
     "next-intl": "^3.9.1",
+    "next-themes": "^0.2.1",
     "oslo": "^1.1.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",

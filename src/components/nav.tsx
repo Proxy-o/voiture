@@ -11,7 +11,7 @@ import {
   Sun,
   Moon,
 } from "lucide-react";
-
+import { useTheme } from "next-themes";
 import { cn } from "~/lib/utils";
 
 import { Button, buttonVariants } from "./ui/button";
@@ -73,7 +73,7 @@ export default function Nav() {
       variant: "ghost",
     },
   ];
-  //   const { theme, setTheme } = useTheme();
+  const { theme, setTheme } = useTheme();
   let path = usePathname();
   //   remove the local "en or fr" from the path
   path = path.replace(/\/(en|fr)/, "");
@@ -89,7 +89,7 @@ export default function Nav() {
   };
 
   return (
-    <div className="group flex h-screen flex-col gap-4 py-2 shadow-lg md:w-[8.5rem]">
+    <div className="group flex h-screen flex-col gap-4 border py-2 shadow-lg md:w-[8.5rem]">
       <nav className="flex h-full flex-col gap-1 px-2 ">
         {links.map((link, index) => (
           <Link
@@ -131,18 +131,18 @@ export default function Nav() {
         </Button>
         {/* add shose them them */}
         <button
-          //   onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+          onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
           className={cn(
             buttonVariants({ variant: "ghost", size: "sm" }),
             "mb-2 justify-start text-primary",
           )}
         >
-          {/* {theme === "dark" ? (
+          {theme === "dark" ? (
             <Sun className="mr-2 h-6 w-6 " />
           ) : (
             <Moon className="mr-2 h-6 w-6 " />
           )}
-          {theme === "dark" ? "Light" : "Dark"} */}
+          {theme === "dark" ? "Light" : "Dark"}
         </button>
       </div>
     </div>

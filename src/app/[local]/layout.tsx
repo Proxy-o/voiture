@@ -6,6 +6,7 @@ import { TRPCReactProvider } from "~/trpc/react";
 
 import { SessionProvider } from "~/app/_context/SessionContext";
 import { validateRequest } from "~/server/lucia/validateRequests";
+import { ThemeProvider } from "../_context/theme-provider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -30,7 +31,16 @@ export default async function RootLayout({
     <html lang={locale}>
       <body className={`font-sans ${inter.variable}`}>
         <TRPCReactProvider>
-          <SessionProvider session={session}>{children}</SessionProvider>
+          <SessionProvider session={session}>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="dark"
+              enableSystem
+              disableTransitionOnChange
+            >
+              {children}
+            </ThemeProvider>
+          </SessionProvider>
         </TRPCReactProvider>
       </body>
     </html>

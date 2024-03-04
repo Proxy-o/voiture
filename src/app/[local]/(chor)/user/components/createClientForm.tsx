@@ -57,14 +57,14 @@ export default function CreateClientForm({
   }
 
   return (
-    <div className="bg-green h-full">
+    <>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
           className=" flex h-full flex-col p-2"
         >
-          <div className=" h-full flex-1 space-y-8 p-2 ">
-            <h1 className="text-2xl font-bold">{t("create_client")}</h1>
+          <h1 className="text-2xl font-bold">{t("create_client")}</h1>
+          <div className="  flex-1 space-y-8 p-2 ">
             <Card className="grid grid-cols-2 gap-2 p-2 shadow-md">
               <FormField
                 control={form.control}
@@ -167,12 +167,11 @@ export default function CreateClientForm({
               />
             </Card>
           </div>
-
           <Button type="submit" className="w-full">
             {t("create_client")}
           </Button>
         </form>
       </Form>
-    </div>
+    </>
   );
 }
