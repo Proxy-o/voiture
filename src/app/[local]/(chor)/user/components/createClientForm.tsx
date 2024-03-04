@@ -18,6 +18,9 @@ import { api } from "~/trpc/react";
 import { createClientSchema } from "~/server/api/types";
 import CustomField from "../../admin/components/customFiled";
 import { useTranslations } from "next-intl";
+import { Checkbox } from "~/components/ui/checkbox";
+import { Card } from "~/components/ui/card";
+import { cn } from "~/lib/utils";
 
 export default function CreateClientForm({
   company_id,
@@ -40,8 +43,8 @@ export default function CreateClientForm({
       city: "",
       country: "",
       email: "",
-      phone: "",
-      mobile: "",
+      phone_number: "",
+      mobile_number: "",
     },
   });
 
@@ -54,112 +57,120 @@ export default function CreateClientForm({
   }
 
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)}>
-        <FormField
-          control={form.control}
-          name={"is_company"}
-          render={({ field }) => (
-            <FormItem className="flex w-full items-center justify-start">
-              <FormLabel className="w-1/2">{t("is_company")}</FormLabel>
-              <FormControl>
-                <Input
-                  type="checkbox"
-                  {...field}
-                  value={field.value.toString()}
-                  className="w-full"
-                />
-              </FormControl>
+    <>
+      <h1 className="text-2xl font-bold">{t("create_client")}</h1>
+      <Form {...form}>
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="h-full space-y-2 p-2"
+        >
+          <Card className="grid grid-cols-2 gap-2 p-2">
+            <FormField
+              control={form.control}
+              name={"is_company"}
+              render={({ field }) => (
+                <FormItem className="mt-8 flex w-full items-center  justify-start ">
+                  <FormLabel
+                    className={cn(
+                      "relative w-full rounded-lg border  p-3",
+                      field.value && "bg-secondary",
+                    )}
+                  >
+                    {t("is_company")}
+                    <FormControl>
+                      <Checkbox
+                        checked={field.value}
+                        onCheckedChange={field.onChange}
+                        className="absolute bottom-2 right-1 z-50 size-6"
+                      />
+                    </FormControl>
+                  </FormLabel>
 
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <CustomField
-          label={t("surname")}
-          name="surname"
-          control={form.control}
-          placeholder={t("surname")}
-        />
-        <CustomField
-          label={t("first_name")}
-          name="firstname"
-          control={form.control}
-          placeholder={t("first_name")}
-        />
-        <CustomField
-          label={t("company_name")}
-          name="company_name"
-          control={form.control}
-          placeholder={t("company_name")}
-        />
-        <CustomField
-          label={t("btw_number")}
-          name="btw_number"
-          control={form.control}
-          placeholder={t("btw_number")}
-        />
-        <CustomField
-          label={t("street")}
-          name="street"
-          control={form.control}
-          placeholder={t("street")}
-        />
-        <CustomField
-          label={t("postal_code")}
-          name="postal_code"
-          control={form.control}
-          placeholder={t("postal_code")}
-        />
-        <CustomField
-          label={t("city")}
-          name="city"
-          control={form.control}
-          placeholder={t("city")}
-        />
-        <CustomField
-          label={t("country")}
-          name="country"
-          control={form.control}
-          placeholder={t("country")}
-        />
-        <CustomField
-          label={t("email")}
-          name="email"
-          control={form.control}
-          placeholder={t("email")}
-        />
-        <CustomField
-          label={t("phone")}
-          name="phone"
-          control={form.control}
-          placeholder={t("phone")}
-        />
-        <CustomField
-          label={t("mobile")}
-          name="mobile"
-          control={form.control}
-          placeholder={t("mobile")}
-        />
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <CustomField
+              label={t("surname")}
+              name="surname"
+              control={form.control}
+              placeholder={t("surname")}
+            />
+            <CustomField
+              label={t("first_name")}
+              name="firstname"
+              control={form.control}
+              placeholder={t("first_name")}
+            />
+            <CustomField
+              label={t("company_name")}
+              name="company_name"
+              control={form.control}
+              placeholder={t("company_name")}
+            />
+          </Card>
+          <Card className="p-2">
+            <CustomField
+              label={t("btw_number")}
+              name="btw_number"
+              control={form.control}
+              placeholder={t("btw_number")}
+            />
+          </Card>
+          <Card className="grid grid-cols-2 gap-2 p-2">
+            <CustomField
+              label={t("street")}
+              name="street"
+              control={form.control}
+              placeholder={t("street")}
+            />
+            <CustomField
+              label={t("postal_code")}
+              name="postal_code"
+              control={form.control}
+              placeholder={t("postal_code")}
+            />
+            <CustomField
+              label={t("city")}
+              name="city"
+              control={form.control}
+              placeholder={t("city")}
+            />
+            <CustomField
+              label={t("country")}
+              name="country"
+              control={form.control}
+              placeholder={t("country")}
+            />
+          </Card>
+          <Card className="grid grid-cols-2 gap-2 p-2">
+            <div className="col-span-2">
+              <CustomField
+                label={t("email")}
+                name="email"
+                control={form.control}
+                placeholder={t("email")}
+              />
+            </div>
+            <CustomField
+              label={t("phone")}
+              name="phone_number"
+              control={form.control}
+              placeholder={t("phone")}
+            />
+            <CustomField
+              label={t("mobile")}
+              name="mobile_number"
+              control={form.control}
+              placeholder={t("mobile")}
+            />
+          </Card>
 
-        {/* <FormField
-          control={form.control}
-          name={"company_id"}
-          render={({ field }) => (
-            <FormItem>
-              <FormControl>
-                <Input
-                  {...field}
-                  // value={Number(company?.compagny?.id)}
-                  className=" w-full"
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        /> */}
-        <Button type="submit">{t("create_client")}</Button>
-      </form>
-    </Form>
+          <Button type="submit" className="w-full">
+            {t("create_client")}
+          </Button>
+        </form>
+      </Form>
+    </>
   );
 }
