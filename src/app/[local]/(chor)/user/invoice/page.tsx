@@ -53,7 +53,7 @@ export default function Page() {
               <CreateInvoiceForm
                 company_id={company.compagny.id.toString()}
                 car_id={selectedCar?.id.toString()}
-                client_id={selectedCar?.id.toString()}
+                client_id={selectedClient?.id.toString()}
               />
             </div>
           </div>
