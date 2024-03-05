@@ -20,9 +20,7 @@ Install node dependencies:
 npm i
 ```
 
-# note :
-
-if you have <strong>DOCKER</strong> just run the following command to start a mysql container
+## if you have <strong>DOCKER</strong> just run the following command to start a mysql container
 
 ```bash
 ./start-mysqlDatabase.sh
@@ -51,7 +49,8 @@ npm run build && npm run start
 Open your prefered browser and Enter :
 http://localhost:3000
 
-you can login with
+# To login as an admin
 
-<h1>admin</h1>
-<h1>admin123</h1>
+User name : _`admin`_
+<br />
+Password : _`admin123`_
