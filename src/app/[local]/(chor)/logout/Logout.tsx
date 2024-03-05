@@ -2,9 +2,9 @@ import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 import { validateRequest } from "~/server/lucia/validateRequests";
 import { lucia } from "~/server/lucia/auth";
-import type { ActionResult } from "~/app/(auth)/signup/components/form";
 import { Button } from "~/components/ui/button";
 import { LogOut } from "lucide-react";
+import type { ActionResult } from "next/dist/server/app-render/types";
 
 export default async function Logout() {
   return (
