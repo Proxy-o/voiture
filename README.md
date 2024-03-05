@@ -57,3 +57,9 @@ http://localhost:3000
 User name : _`admin`_
 <br />
 Password : _`admin123`_
+
+# To login as a User
+
+User name : _`user`_
+<br />
+Password : _`user123`_
