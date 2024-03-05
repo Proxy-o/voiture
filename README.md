@@ -33,6 +33,9 @@ and then run :
 ```bash
 npx prisma migrate dev --name init
 ```
+if you get Error: P1017: Server has closed the connection.
+wait until the container is fully functional
+
 
 seed some data to log in
 
