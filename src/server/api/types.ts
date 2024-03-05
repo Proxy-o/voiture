@@ -23,6 +23,7 @@ export const createUserSchema = z.object({
   email: z.string().email(),
   password: z.string().min(6).max(100),
   compagnyId: z.number(),
+  is_admin: z.boolean(),
 });
 export const updateUserSchema = z.object({
   username: z.string().optional(),

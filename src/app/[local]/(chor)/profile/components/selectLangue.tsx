@@ -2,6 +2,7 @@
 import { ArrowDown, Languages } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React from "react";
 import { Button } from "~/components/ui/button";
 import {
@@ -11,6 +12,8 @@ import {
   DropdownMenuTrigger,
 } from "~/components/ui/dropdown-menu";
 export default function SelectLangue() {
+  // get the current path
+  const pathname = usePathname();
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -20,13 +23,14 @@ export default function SelectLangue() {
       </DropdownMenuTrigger>
       <DropdownMenuContent className=" flex flex-col  p-0">
         <Link
-          href="/en/profile"
+          // replace fr with en
+          href={pathname.replace("/fr/", "/en/")}
           className=" w-full p-2 text-center hover:bg-secondary"
         >
           En
         </Link>
         <Link
-          href="/fr/profile"
+          href={pathname.replace("/en/", "/fr/")}
           className=" w-full p-2 text-center hover:bg-secondary"
         >
           Fr

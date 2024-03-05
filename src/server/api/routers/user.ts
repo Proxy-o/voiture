@@ -1,12 +1,6 @@
 import { Argon2id } from "oslo/password";
 import { z } from "zod";
-import {
-  createCarSchema,
-  createClientSchema,
-  createInvoiceSchema,
-  createUserSchema,
-  updateUserSchema,
-} from "~/server/api/types";
+import { createUserSchema, updateUserSchema } from "~/server/api/types";
 
 import {
   createTRPCRouter,
@@ -24,6 +18,7 @@ export const userRouter = createTRPCRouter({
           username: input.username,
           password: hashedPassword,
           email: input.email,
+          is_admin: input.is_admin,
           compagny: {
             connect: {
               id: input.compagnyId,

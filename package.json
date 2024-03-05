@@ -4,10 +4,11 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "seed": "node prisma/seed.js",
     "build": "next build",
+    "db:seed": "node prisma/seed.js",
     "db:push": "prisma db push",
     "db:studio": "prisma studio",
+    "db:refresh": "prisma migrate reset --force && prisma migrate dev",
     "dev": "next dev",
     "postinstall": "prisma generate",
     "lint": "next lint",

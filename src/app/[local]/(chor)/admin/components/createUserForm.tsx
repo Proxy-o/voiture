@@ -18,9 +18,13 @@ import { Button } from "~/components/ui/button";
 import { api } from "~/trpc/react";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
+import SelectCompany from "./selectCompany";
+import { Checkbox } from "~/components/ui/checkbox";
+import { cn } from "~/lib/utils";
 
 export default function CreateUserForm() {
   const t = useTranslations("User");
+  const [companyId, setCompanyId] = React.useState<string>("1");
 
   const router = useRouter();
   const form = useForm<z.infer<typeof createUserSchema>>({
@@ -29,7 +33,8 @@ export default function CreateUserForm() {
       username: "",
       email: "",
       password: "",
-      compagnyId: 1,
+      compagnyId: parseInt(companyId),
+      is_admin: false,
     },
   });
 
@@ -40,17 +45,40 @@ export default function CreateUserForm() {
     },
   });
   function onSubmit(values: z.infer<typeof createUserSchema>) {
-    submit(values);
+    submit(
+      {
+        ...values,
+        compagnyId: parseInt(companyId),
+      },
+      {
+        onSuccess: () => {
+          router.refresh();
+        },
+      },
+    );
   }
-
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
+        <SelectCompany setCompanyId={setCompanyId} />
         <FormField
           control={form.control}
           name="username"
           render={({ field }) => (
             <FormItem>
+              <FormLabel>{t("name")}</FormLabel>
+              <FormControl>
+                <Input placeholder="Name of the User" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="compagnyId"
+          render={({ field }) => (
+            <FormItem hidden>
               <FormLabel>{t("name")}</FormLabel>
               <FormControl>
                 <Input placeholder="Name of the User" {...field} />
@@ -81,6 +109,31 @@ export default function CreateUserForm() {
               <FormControl>
                 <Input placeholder={t("email")} {...field} />
               </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="is_admin"
+          render={({ field }) => (
+            <FormItem className="flex  items-center justify-center ">
+              <FormLabel
+                className={cn(
+                  "relative w-full rounded-md border p-3",
+                  field.value && "bg-secondary",
+                )}
+              >
+                {t("is_admin")}
+                <FormControl>
+                  <Checkbox
+                    checked={field.value}
+                    onCheckedChange={field.onChange}
+                    className="  absolute bottom-2 right-1 z-50 size-6"
+                  />
+                </FormControl>
+              </FormLabel>
               <FormMessage />
             </FormItem>
           )}
