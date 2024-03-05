@@ -17,9 +17,11 @@ export default function Layout({
       <div className=" h-screen w-full  ">
         <div className="flex h-full  flex-col gap-1">
           <Header />
-          <div className="flex h-full ">
+          <div className="relative flex h-full ">
             <Nav />
-            <div className="  w-full overflow-auto">{children}</div>
+            <div className="  absolute h-full w-full overflow-auto pl-44">
+              {children}
+            </div>
           </div>
         </div>
       </div>

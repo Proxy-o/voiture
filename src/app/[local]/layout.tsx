@@ -27,6 +27,7 @@ export default async function RootLayout({
   params: { locale: string };
 }) {
   const session = await validateRequest();
+  
   return (
     <html lang={locale}>
       <body className={`font-sans ${inter.variable}`}>

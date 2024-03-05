@@ -118,7 +118,7 @@ export default function CreateUserForm() {
           control={form.control}
           name="is_admin"
           render={({ field }) => (
-            <FormItem className="flex  items-center justify-center ">
+            <FormItem className="my-8  flex items-center justify-center">
               <FormLabel
                 className={cn(
                   "relative w-full rounded-md border p-3",
@@ -139,7 +139,9 @@ export default function CreateUserForm() {
           )}
         />
 
-        <Button type="submit">{t("create_user")}</Button>
+        <Button type="submit" className="w-full">
+          {t("create_user")}
+        </Button>
       </form>
     </Form>
   );

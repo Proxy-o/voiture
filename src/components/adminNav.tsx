@@ -22,13 +22,11 @@ import {
 import { useTheme } from "next-themes";
 import { cn } from "~/lib/utils";
 
-import { Button, buttonVariants } from "./ui/button";
+import { buttonVariants } from "./ui/button";
 import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import { useSession } from "~/app/_context/SessionContext";
-import { api } from "~/trpc/react";
-import AdminNav from "./adminNav";
 
 interface linksProps {
   title: string;
@@ -37,58 +35,21 @@ interface linksProps {
   variant: "default" | "ghost";
 }
 
-export default function Nav() {
+export default function AdminNav() {
   const u = useTranslations("User");
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const links: linksProps[] = [
     {
-      title: u("dashboard"),
-      link: "/",
+      title: u("create_company"),
+      link: "/admin",
       icon: Home,
       variant: "ghost",
     },
     {
-      title: "Profile",
-      link: "/profile",
-      icon: User,
-      variant: "ghost",
-    },
-    {
-      title: u("add_client"),
-      link: "/user/client",
+      title: u("create_user"),
+      link: "/admin/user",
       icon: UserRoundPlus,
-      variant: "ghost",
-    },
-    {
-      title: u("add_car"),
-      link: "/user/car",
-      icon: Car,
-      variant: "ghost",
-    },
-    {
-      title: u("add_invoice"),
-      link: "/user/invoice",
-      icon: FileText,
-      variant: "ghost",
-    },
-
-    {
-      title: u("invoice_list"),
-      link: "/user/invoice/all",
-      icon: Archive,
-      variant: "ghost",
-    },
-    {
-      title: u("client_list"),
-      link: "/user/client/list",
-      icon: Users,
-      variant: "ghost",
-    },
-    {
-      title: u("car_list"),
-      link: "/user/car/list",
-      icon: CarFront,
       variant: "ghost",
     },
   ];
@@ -105,16 +66,8 @@ export default function Nav() {
   };
   const { session, user } = useSession();
 
-  const { data: currentUser, isLoading } = api.user.getOne.useQuery(
-    parseInt(user!.id),
-  );
-  if (!isLoading && currentUser && currentUser.is_admin) {
-    return <AdminNav />;
-  }
-
   return (
-    user &&
-    !isLoading && (
+    user && (
       <div className="group z-50 flex  h-full flex-col gap-4 border-r  py-2 shadow-lg">
         <nav className="flex h-full flex-col gap-1 px-2 ">
           {links.map((link, index) => (

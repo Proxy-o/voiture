@@ -206,7 +206,9 @@ export default function CreateCompanyForm() {
             />
           </Card>
         </div>
-        <Button type="submit">{t("create_company")}</Button>
+        <Button type="submit" className="w-full">
+          {t("create_company")}
+        </Button>
       </form>
     </Form>
   );

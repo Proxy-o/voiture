@@ -23,7 +23,9 @@
     "contact_info": "Contact information",
     "bank_info": "Bank information",
     "bank_info2": "Secondary bank information",
-    "create_company": "Create company"
+    "create_company": "Create company",
+    "select_company": "Select company",
+    "no_company_yet": "No company yet"
   },
   "User": {
     "name": "User name",
@@ -41,7 +43,9 @@
     "select_mode": "Select a mode",
     "client_list": "Client list",
     "car_list": "Car list",
-    "dashboard": "Dashboard"
+    "dashboard": "Dashboard",
+    "is_admin": "Is admin",
+    "create_company": "Create company"
   },
   "Client": {
     "is_company": "Is a company",
