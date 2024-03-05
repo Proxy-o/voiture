@@ -62,7 +62,7 @@ export default function CreateCarForm({ company_id }: { company_id: string }) {
           className="flex h-full flex-col  p-2"
         >
           <h1 className="text-2xl font-bold">{t("create_car")}</h1>
-          <div className="  flex-1 space-y-10  p-2">
+          <div className="  flex-1 space-y-4  p-2">
             <Card className="grid grid-cols-2 gap-2 p-2 pb-4 shadow-md">
               <CustomField
                 label={t("chassis_number")}
@@ -126,7 +126,6 @@ export default function CreateCarForm({ company_id }: { company_id: string }) {
                     <FormControl>
                       <Input type="number" {...field} className="w-full" />
                     </FormControl>
-                    <FormMessage />
                   </FormItem>
                 )}
               />
@@ -139,7 +138,6 @@ export default function CreateCarForm({ company_id }: { company_id: string }) {
                     <FormControl>
                       <Input type="number" {...field} className="w-full" />
                     </FormControl>
-                    <FormMessage />
                   </FormItem>
                 )}
               />
@@ -152,7 +150,6 @@ export default function CreateCarForm({ company_id }: { company_id: string }) {
                     <FormControl>
                       <Input type="number" {...field} className="w-full" />
                     </FormControl>
-                    <FormMessage />
                   </FormItem>
                 )}
               />
@@ -186,7 +183,6 @@ export default function CreateCarForm({ company_id }: { company_id: string }) {
                     <FormControl>
                       <Input type="number" {...field} className="w-full" />
                     </FormControl>
-                    <FormMessage />
                   </FormItem>
                 )}
               />

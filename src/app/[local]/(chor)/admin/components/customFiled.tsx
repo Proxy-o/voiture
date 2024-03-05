@@ -36,7 +36,6 @@ const CustomField: React.FC<FieldProps> = ({
           <Input placeholder={placeholder} {...field} />
         </FormControl>
         {description && <FormDescription>{description}</FormDescription>}
-        <FormMessage />
       </FormItem>
     )}
   />

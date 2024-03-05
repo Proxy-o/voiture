@@ -7,6 +7,7 @@ import Logout from "~/app/[local]/(chor)/logout/Logout";
 import { api } from "~/trpc/server";
 import Image from "next/image";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import SelectLangue from "~/app/[local]/(chor)/profile/components/selectLangue";
 
 export default async function Header() {
   const { user } = await validateRequest();
@@ -45,6 +46,7 @@ export default async function Header() {
                 <Link href="/profile">
                   <span className="mr-2 ">{user.username}</span>
                 </Link>
+                <SelectLangue />
                 <Logout />
               </nav>
             ) : (

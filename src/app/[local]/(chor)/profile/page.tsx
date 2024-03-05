@@ -12,12 +12,7 @@ import {
   FormLabel,
   FormMessage,
 } from "~/components/ui/form";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "~/components/ui/dropdown-menu";
+
 import { useTheme } from "next-themes";
 import { Input } from "~/components/ui/input";
 import { Button, buttonVariants } from "~/components/ui/button";
@@ -27,9 +22,9 @@ import { useTranslations } from "next-intl";
 import { useSession } from "~/app/_context/SessionContext";
 import { updateUserSchema } from "~/server/api/types";
 import { Card } from "~/components/ui/card";
-import Link from "next/link";
-import { ArrowDown, Moon, Sun } from "lucide-react";
+import { Moon, Sun } from "lucide-react";
 import { cn } from "~/lib/utils";
+import SelectLangue from "./components/selectLangue";
 
 export default function Page() {
   const { theme, setTheme } = useTheme();
@@ -146,37 +141,14 @@ export default function Page() {
         </Form>
       </div>
       <Card className="flex justify-around p-8">
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="outline">
-              {t("select_langue")}
-              <ArrowDown className="ml-2 h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent className=" flex flex-col  p-0">
-            <Link
-              href="/en/profile"
-              className=" w-full p-2 text-center hover:bg-secondary"
-            >
-              English
-            </Link>
-            <DropdownMenuSeparator />
-            <Link
-              href="/fr/profile"
-              className=" w-full p-2 text-center hover:bg-secondary"
-            >
-              French
-            </Link>
-          </DropdownMenuContent>
-        </DropdownMenu>
+        <SelectLangue />
         {mounted && (
-          <div className=" flex items-center justify-center border p-1">
-            <p>{t("select_mode")} : </p>
+          <div className=" flex items-center justify-center ">
             <button
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
               className={cn(
                 buttonVariants({ variant: "ghost", size: "sm" }),
-                " justify-start text-primary ",
+                " justify-start py-5 text-primary",
               )}
             >
               {theme === "dark" ? (
