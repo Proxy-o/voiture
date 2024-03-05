@@ -62,6 +62,9 @@ export default function CreateClientForm({
           form.reset();
           toast.success(m("client_created"));
         },
+        onError: (error) => {
+          toast.error(error.message);
+        },
       },
     );
   }

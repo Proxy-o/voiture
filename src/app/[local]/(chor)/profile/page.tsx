@@ -53,6 +53,9 @@ export default function Page() {
       form.reset();
       toast.success(m("user_updated"));
     },
+    onError: (error) => {
+      toast.error(error.message);
+    },
   });
 
   function onSubmit(values: z.infer<typeof updateUserSchema>) {

@@ -23,7 +23,7 @@ import { useTheme } from "next-themes";
 import { cn } from "~/lib/utils";
 
 import { Button, buttonVariants } from "./ui/button";
-import { usePathname } from "next/navigation";
+import { redirect, usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import { useSession } from "~/app/_context/SessionContext";
@@ -99,9 +99,12 @@ export default function Nav() {
     variant: "default",
   };
   const { session, user } = useSession();
+  if (!session || !user) {
+    return redirect("/login");
+  }
 
   const { data: currentUser, isLoading } = api.user.getOne.useQuery(
-    parseInt(user!.id),
+    parseInt(user.id),
   );
   if (!isLoading && currentUser && currentUser.is_admin) {
     return <AdminNav />;

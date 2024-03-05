@@ -26,7 +26,7 @@ import { toast } from "sonner";
 export default function CreateUserForm() {
   const t = useTranslations("User");
   const m = useTranslations("Messages");
-  const [companyId, setCompanyId] = React.useState<string>("1");
+  const [companyId, setCompanyId] = React.useState<string>("0");
 
   const router = useRouter();
   const form = useForm<z.infer<typeof createUserSchema>>({
@@ -45,6 +45,9 @@ export default function CreateUserForm() {
       router.refresh();
       form.reset();
       toast.success(m("user_created"));
+    },
+    onError: (error) => {
+      toast.error(error.message);
     },
   });
   function onSubmit(values: z.infer<typeof createUserSchema>) {
@@ -142,7 +145,7 @@ export default function CreateUserForm() {
           )}
         />
 
-        <Button type="submit" className="w-full">
+        <Button type="submit" className="w-full" disabled={companyId === "0"}>
           {t("create_user")}
         </Button>
       </form>

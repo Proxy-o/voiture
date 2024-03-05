@@ -22,7 +22,8 @@ export default function CreateCompanyForm() {
   const form = useForm<z.infer<typeof createCompanySchema>>({
     resolver: zodResolver(createCompanySchema),
     defaultValues: {
-      company_logo: "",
+      company_logo:
+        "https://utfs.io/f/e5483b43-61ea-4dc2-8d98-8e8623a9bab3-xznjn5.png",
       company_name: "",
       owner_name: "",
       owner_lastname: "",
@@ -48,6 +49,9 @@ export default function CreateCompanyForm() {
       router.refresh();
       form.reset();
       toast.success(m("company_created"));
+    },
+    onError: (error) => {
+      toast.error(error.message);
     },
   });
 

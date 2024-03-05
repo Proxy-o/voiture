@@ -3,13 +3,12 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { lucia } from "~/server/lucia/auth";
 import { db } from "~/server/db";
-import type { ActionResult } from "../../(auth)/signup/page";
-import { Form } from "../../(auth)/signup/components/form";
 import { Card } from "~/components/ui/card";
 import { Asterisk, User } from "lucide-react";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
 import { Button } from "~/components/ui/button";
+import { ActionResult, Form } from "./components/Form";
 
 export default async function Page() {
   return (

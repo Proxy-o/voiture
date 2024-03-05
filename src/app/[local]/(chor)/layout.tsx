@@ -19,7 +19,7 @@ export default function Layout({
         <div className="flex h-full  flex-col gap-1">
           <Header />
           <div className="relative flex h-full ">
-            <Toaster position="top-right" duration={1000} />
+            <Toaster duration={2000} />
 
             <Nav />
             <div className="  absolute h-full w-full overflow-auto pl-44">

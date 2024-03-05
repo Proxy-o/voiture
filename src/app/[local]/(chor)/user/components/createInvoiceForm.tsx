@@ -61,6 +61,9 @@ export default function CreateInvoiceForm({
           form.reset();
           toast.success(m("invoice_created"));
         },
+        onError: (error) => {
+          toast.error(error.message);
+        },
       },
     );
   }

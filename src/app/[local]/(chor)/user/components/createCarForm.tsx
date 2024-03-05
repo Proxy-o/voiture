@@ -59,6 +59,9 @@ export default function CreateCarForm({ company_id }: { company_id: string }) {
         onSuccess: () => {
           toast.success(m("car_created"));
         },
+        onError: (error) => {
+          toast.error(error.message);
+        },
       },
     );
   }
