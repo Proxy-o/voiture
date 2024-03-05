@@ -48,12 +48,7 @@ export default function Nav() {
       icon: Home,
       variant: "ghost",
     },
-    {
-      title: "Profile",
-      link: "/profile",
-      icon: User,
-      variant: "ghost",
-    },
+
     {
       title: u("add_client"),
       link: "/user/client",
@@ -135,7 +130,7 @@ export default function Nav() {
 
         <div className="flex flex-col px-2">
           <Link
-            href="#"
+            href="/profile"
             className={cn(
               buttonVariants({ variant: "ghost", size: "sm" }),
               "mb-2 justify-start",

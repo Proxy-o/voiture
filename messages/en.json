@@ -45,7 +45,9 @@
     "car_list": "Car list",
     "dashboard": "Dashboard",
     "is_admin": "Is admin",
-    "create_company": "Create company"
+    "create_company": "Create company",
+    "client_num": "Client number",
+    "car_num": "Car number"
   },
   "Client": {
     "is_company": "Is a company",

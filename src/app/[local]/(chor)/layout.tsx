@@ -2,6 +2,7 @@ import { NextIntlClientProvider, useMessages } from "next-intl";
 import React from "react";
 import Header from "~/components/header";
 import Nav from "~/components/nav";
+import { Toaster } from "sonner";
 
 export default function Layout({
   children,
@@ -18,6 +19,8 @@ export default function Layout({
         <div className="flex h-full  flex-col gap-1">
           <Header />
           <div className="relative flex h-full ">
+            <Toaster />
+
             <Nav />
             <div className="  absolute h-full w-full overflow-auto pl-44">
               {children}

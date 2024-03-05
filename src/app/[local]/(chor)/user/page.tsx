@@ -7,9 +7,11 @@ import { validateRequest } from "~/server/lucia/validateRequests";
 import { api } from "~/trpc/server";
 import Invoices from "src/app/[local]/(chor)/user/invoice/all/page";
 import Link from "next/link";
+import { getTranslations } from "next-intl/server";
 
 export default async function Page() {
   const { session, user } = await validateRequest();
+  const t = await getTranslations("User");
   if (!session || !user) {
     redirect("/login");
   }
@@ -29,7 +31,7 @@ export default async function Page() {
     <div className="flex h-full w-full flex-col gap-2 p-2">
       <div className="flex min-h-64 w-full gap-2">
         <Card className="flex size-full flex-col items-center justify-center bg-primary/60 p-4 ">
-          <p>Number of Cars </p>
+          <p>{t("car_num")}</p>
           <div className="flex flex-1 items-center text-6xl font-bold">
             {cars.length}
           </div>
@@ -37,12 +39,12 @@ export default async function Page() {
             href="/user/car "
             className="flex w-full justify-center bg-secondary  p-2 hover:bg-secondary/50"
           >
-            Add new car
+            {t("add_car")}
             <PlusIcon className="ml-2" />
           </Link>
         </Card>
         <Card className="flex size-full  flex-col items-center justify-center bg-primary/60 p-4">
-          <p>Number of client </p>
+          <p>{t("client_num")} </p>
           <div className="flex flex-1 items-center text-6xl font-bold">
             {client.length}
           </div>
@@ -50,7 +52,7 @@ export default async function Page() {
             href="/user/client "
             className="flex w-full justify-center bg-secondary  p-2 hover:bg-secondary/50"
           >
-            Add new Client
+            {t("add_client")}
             <PlusIcon className="ml-2" />
           </Link>
         </Card>
@@ -60,7 +62,7 @@ export default async function Page() {
         href="/user/invoice "
         className="flex w-full justify-center bg-secondary  p-2 hover:bg-secondary/50"
       >
-        Add new Invoice
+        {t("add_invoice")}
         <PlusIcon className="ml-2" />
       </Link>{" "}
     </div>

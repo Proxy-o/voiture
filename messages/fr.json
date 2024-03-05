@@ -45,7 +45,9 @@
     "car_list": "Liste de véhicules",
     "dashboard": "Tableau de bord",
     "is_admin": "Administrateur ?",
-    "create_company": "Créer entreprise"
+    "create_company": "Créer entreprise",
+    "client_num": "Numéro de client",
+    "car_num": "Numéro de véhicules"
   },
   "Client": {
     "is_company": "Est une entreprise",
