@@ -42,9 +42,15 @@ export default function Nav() {
   const [mounted, setMounted] = useState(false);
   const links: linksProps[] = [
     {
-      title: "login",
-      link: "/login",
+      title: u("dashboard"),
+      link: "/",
       icon: Home,
+      variant: "ghost",
+    },
+    {
+      title: "Profile",
+      link: "/profile",
+      icon: User,
       variant: "ghost",
     },
     {
@@ -65,12 +71,7 @@ export default function Nav() {
       icon: FileText,
       variant: "ghost",
     },
-    {
-      title: "Profile",
-      link: "/profile",
-      icon: User,
-      variant: "ghost",
-    },
+
     {
       title: u("invoice_list"),
       link: "/user/invoice/all",

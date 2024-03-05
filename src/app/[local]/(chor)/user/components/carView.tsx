@@ -16,7 +16,7 @@ export default function CarView({
     return <div>{t("no_car_yet")}</div>;
   }
   return (
-    <div className="h-full overflow-auto border-l shadow">
+    <div className="h-full w-full overflow-auto border-l shadow">
       <p className="text-center font-bold">{t("car_info")}</p>
       <div className="  grid  w-full gap-2  p-2 md:grid-cols-2">
         <div className=" border p-2 shadow-md">

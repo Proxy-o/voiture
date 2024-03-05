@@ -33,14 +33,15 @@
     "create_user": "Create user",
     "add_client": "Add client",
     "add_car": "Add car",
-    "add_invoice": "Add invoice",
+    "add_invoice": "Create invoice",
     "invoice_list": "Invoice list",
     "update_user": "Update",
     "save": "Save",
     "select_langue": "Select a language",
     "select_mode": "Select a mode",
     "client_list": "Client list",
-    "car_list": "Car list"
+    "car_list": "Car list",
+    "dashboard": "Dashboard"
   },
   "Client": {
     "is_company": "Is a company",

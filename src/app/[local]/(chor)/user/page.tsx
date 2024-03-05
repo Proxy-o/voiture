@@ -26,9 +26,9 @@ export default async function Page() {
 
   //   show number of cars and clients in Card and a button to add new car or client
   return (
-    <div className="flex flex-col gap-2">
-      <div className="flex">
-        <Card className="flex size-96 flex-col items-center justify-center bg-primary p-4 ">
+    <div className="flex h-full w-full flex-col gap-2 p-2">
+      <div className="flex min-h-64 w-full gap-2">
+        <Card className="flex size-full flex-col items-center justify-center bg-primary p-4 ">
           <p>Number of Cars </p>
           <div className="flex flex-1 items-center text-6xl font-bold">
             {cars.length}
@@ -41,7 +41,7 @@ export default async function Page() {
             <PlusIcon className="ml-2" />
           </Link>
         </Card>
-        <Card className="flex size-96 flex-col items-center justify-center bg-primary p-4 ">
+        <Card className="flex size-full  flex-col items-center justify-center bg-primary p-4">
           <p>Number of client </p>
           <div className="flex flex-1 items-center text-6xl font-bold">
             {client.length}

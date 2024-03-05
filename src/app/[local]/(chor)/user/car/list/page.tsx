@@ -41,13 +41,13 @@ export default function Page() {
         setSelectedClient,
       }}
     >
-      <div className="p-2">
+      <div className="w-full  p-2">
         {isSuccess && company && (
           <SelectCar company_id={company.compagny.id.toString()} />
         )}
-        <div className=" h-full overflow-auto">
+        <div className=" mt-4 h-full w-full overflow-auto">
           {isCarOpen && selectedCar && (
-            <div className="flex w-full  items-center justify-center ">
+            <div className="flex w-full  items-center justify-center  ">
               <CarView selectedCar={selectedCar} />
             </div>
           )}
