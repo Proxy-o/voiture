@@ -1,6 +1,5 @@
 "use client";
-import { ArrowDown, Languages } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { Languages } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
@@ -8,7 +7,6 @@ import { Button } from "~/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "~/components/ui/dropdown-menu";
 export default function SelectLangue() {

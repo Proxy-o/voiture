@@ -1,24 +1,7 @@
 "use client";
 import Link from "next/link";
-import {
-  LogOut,
-  type LucideIcon,
-  UserRoundCog,
-  UserRoundPlus,
-  Car,
-  FileText,
-  CarFront,
-} from "lucide-react";
-import {
-  Archive,
-  User,
-  Home,
-  GamepadIcon,
-  Send,
-  Users,
-  Sun,
-  Moon,
-} from "lucide-react";
+import { type LucideIcon, UserRoundCog, UserRoundPlus } from "lucide-react";
+import { Home, Sun, Moon } from "lucide-react";
 import { useTheme } from "next-themes";
 import { cn } from "~/lib/utils";
 
@@ -59,12 +42,12 @@ export default function AdminNav() {
 
   let path = usePathname();
   path = path.replace(/\/(en|fr)/, "");
-  const activeLink = links.findIndex((link) => link.link === path);
-  links[activeLink] = {
-    ...links[activeLink],
-    variant: "default",
-  };
-  const { session, user } = useSession();
+  links.map((link) => {
+    if (path === link.link) {
+      link.variant = "default";
+    }
+  });
+  const { user } = useSession();
 
   return (
     user && (

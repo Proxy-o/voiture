@@ -11,7 +11,7 @@ import {
 import { useTranslations } from "next-intl";
 import { UserContext } from "../_context/userContext";
 import Link from "next/link";
-import { Client } from "../../types";
+import type { Client } from "../../types";
 import { PlusIcon } from "lucide-react";
 
 export default function SelectClient({ company_id }: { company_id: string }) {

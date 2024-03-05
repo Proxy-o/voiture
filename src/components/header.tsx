@@ -5,7 +5,6 @@ import { Skeleton } from "~/components/ui/skeleton";
 import { validateRequest } from "~/server/lucia/validateRequests";
 import Logout from "~/app/[local]/(chor)/logout/Logout";
 import { api } from "~/trpc/server";
-import Image from "next/image";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import SelectLangue from "~/app/[local]/(chor)/profile/components/selectLangue";
 

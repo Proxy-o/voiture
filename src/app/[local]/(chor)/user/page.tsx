@@ -57,14 +57,16 @@ export default async function Page() {
           </Link>
         </Card>
       </div>
-      <Invoices />
+      <div className="h-full">
+        <Invoices />
+      </div>
       <Link
         href="/user/invoice "
-        className="flex w-full justify-center bg-secondary  p-2 hover:bg-secondary/50"
+        className="flex w-full justify-center bg-primary/80  p-2  hover:bg-primary/50"
       >
         {t("add_invoice")}
         <PlusIcon className="ml-2" />
-      </Link>{" "}
+      </Link>
     </div>
   );
 }

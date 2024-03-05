@@ -3,10 +3,8 @@ import React, { useState } from "react";
 import { redirect } from "next/navigation";
 import { useSession } from "~/app/_context/SessionContext";
 import { api } from "~/trpc/react";
-import { Car, Client } from "../../../types";
+import type { Car, Client } from "../../../types";
 import { UserContext } from "../../_context/userContext";
-import SelectCar from "../../components/selectCar";
-import { ArrowRight } from "lucide-react";
 import ClientView from "../../components/clientView";
 import SelectClient from "../../components/selectClient";
 

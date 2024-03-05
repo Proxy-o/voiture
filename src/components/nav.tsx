@@ -9,16 +9,7 @@ import {
   FileText,
   CarFront,
 } from "lucide-react";
-import {
-  Archive,
-  User,
-  Home,
-  GamepadIcon,
-  Send,
-  Users,
-  Sun,
-  Moon,
-} from "lucide-react";
+import { Archive, Home, Users, Sun, Moon } from "lucide-react";
 import { useTheme } from "next-themes";
 import { cn } from "~/lib/utils";
 
@@ -93,11 +84,11 @@ export default function Nav() {
 
   let path = usePathname();
   path = path.replace(/\/(en|fr)/, "");
-  const activeLink = links.findIndex((link) => link.link === path);
-  links[activeLink] = {
-    ...links[activeLink],
-    variant: "default",
-  };
+  links.map((link) => {
+    if (path === link.link) {
+      link.variant = "default";
+    }
+  });
   const { session, user } = useSession();
   if (!session || !user) {
     return redirect("/login");

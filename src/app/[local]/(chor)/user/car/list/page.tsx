@@ -5,7 +5,6 @@ import { useSession } from "~/app/_context/SessionContext";
 import { api } from "~/trpc/react";
 import type { Car, Client } from "../../../types";
 import { UserContext } from "../../_context/userContext";
-import { ArrowRight } from "lucide-react";
 import CarView from "../../components/carView";
 import SelectCar from "../../components/selectCar";
 

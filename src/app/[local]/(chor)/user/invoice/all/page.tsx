@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import React, { use } from "react";
+import React from "react";
 import { validateRequest } from "~/server/lucia/validateRequests";
 import { api } from "~/trpc/server";
 import {
@@ -30,7 +30,7 @@ export default async function Page() {
   );
   return (
     <div>
-      <Table className="border ">
+      <Table className="h-full border">
         <TableCaption>{i("list_of_invoices")}</TableCaption>
         <TableHeader>
           <TableRow>
@@ -41,7 +41,7 @@ export default async function Page() {
             <TableHead>{i("action")}</TableHead>
           </TableRow>
         </TableHeader>
-        <TableBody>
+        <TableBody className="h-full">
           {invoices.map((invoice) => (
             <TableRow key={invoice.id}>
               <TableCell>{invoice.id.toString()}</TableCell>
