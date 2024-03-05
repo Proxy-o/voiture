@@ -12,7 +12,7 @@ import { type ActionResult, Form } from "./components/Form";
 
 export default async function Page() {
   return (
-    <div className="m-32 ">
+    <div className="m-32 space-y-2">
       <h1>Login</h1>
       <Form action={login}>
         <Card className="flex flex-col p-2 ">
