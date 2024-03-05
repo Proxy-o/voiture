@@ -24,7 +24,7 @@ npm i
  
 
 # note : 
-if you have docker  just run the following command  to start a mysql container
+if you have <strong>DOCKER</strong>  just run the following command  to start a mysql container
 
 ```bash
 ./start-mysqlDatabase.sh 
