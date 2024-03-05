@@ -21,7 +21,7 @@ Install node dependencies:
 npm i
 ```
 
-Replace the DATABASE_URL with  your  mysql database url in the .env file 
+ 
 
 # note : 
 if you have docker  just run the following command  to start a mysql container
@@ -29,7 +29,7 @@ if you have docker  just run the following command  to start a mysql container
 ```bash
 ./start-mysqlDatabase.sh 
 ```
-
+If NOT replace the DATABASE_URL with  your  mysql database url in the .env file
 
 and then run :
 
