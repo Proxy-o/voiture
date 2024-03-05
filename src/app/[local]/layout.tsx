@@ -15,7 +15,7 @@ const inter = Inter({
 
 export const metadata = {
   title: "Company",
-  description: "voiture",
+  description: "véhicules",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
@@ -27,7 +27,7 @@ export default async function RootLayout({
   params: { locale: string };
 }) {
   const session = await validateRequest();
-  
+
   return (
     <html lang={locale}>
       <body className={`font-sans ${inter.variable}`}>

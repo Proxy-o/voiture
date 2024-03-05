@@ -116,7 +116,7 @@ export default function Nav() {
     user &&
     !isLoading && (
       <div className="group z-50 flex  h-full flex-col gap-4 border-r  py-2 shadow-lg">
-        <nav className="flex h-full flex-col gap-1 px-2 ">
+        <nav className="flex h-full flex-col gap-1  ">
           {links.map((link, index) => (
             <Link
               key={index}
