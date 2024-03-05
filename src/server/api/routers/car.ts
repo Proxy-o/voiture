@@ -1,8 +1,4 @@
-import {
-  createTRPCRouter,
-  protectedProcedure,
-  publicProcedure,
-} from "~/server/api/trpc";
+import { createTRPCRouter, protectedProcedure } from "~/server/api/trpc";
 import { createCarSchema } from "../types";
 import { z } from "zod";
 
@@ -37,7 +33,7 @@ export const carRouter = createTRPCRouter({
         },
       });
     }),
-  getCompanyCars: publicProcedure
+  getCompanyCars: protectedProcedure
     .input(z.number())
     .query(async ({ input, ctx }) => {
       return ctx.db.car.findMany({

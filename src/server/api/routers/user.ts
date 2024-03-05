@@ -2,14 +2,10 @@ import { Argon2id } from "oslo/password";
 import { z } from "zod";
 import { createUserSchema, updateUserSchema } from "~/server/api/types";
 
-import {
-  createTRPCRouter,
-  protectedProcedure,
-  publicProcedure,
-} from "~/server/api/trpc";
+import { createTRPCRouter, protectedProcedure } from "~/server/api/trpc";
 
 export const userRouter = createTRPCRouter({
-  create: publicProcedure
+  create: protectedProcedure
     .input(createUserSchema)
     .mutation(async ({ input, ctx }) => {
       const hashedPassword = await new Argon2id().hash(input.password);
@@ -44,7 +40,7 @@ export const userRouter = createTRPCRouter({
       });
     }),
 
-  getOne: publicProcedure.input(z.number()).query(async ({ input, ctx }) => {
+  getOne: protectedProcedure.input(z.number()).query(async ({ input, ctx }) => {
     return ctx.db.user.findUnique({
       where: {
         id: input,
@@ -54,7 +50,7 @@ export const userRouter = createTRPCRouter({
       },
     });
   }),
-  getUserCompany: publicProcedure
+  getUserCompany: protectedProcedure
     .input(z.number())
     .query(async ({ input, ctx }) => {
       return ctx.db.user.findUnique({
