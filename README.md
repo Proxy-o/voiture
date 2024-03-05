@@ -2,7 +2,6 @@
 
 To set up the Project locally, follow these steps:
 
-
 Clone the Repository:
 
 ```bash
@@ -21,15 +20,15 @@ Install node dependencies:
 npm i
 ```
 
- 
+# note :
 
-# note : 
-if you have <strong>DOCKER</strong>  just run the following command  to start a mysql container
+if you have <strong>DOCKER</strong> just run the following command to start a mysql container
 
 ```bash
-./start-mysqlDatabase.sh 
+./start-mysqlDatabase.sh
 ```
-If NOT replace the DATABASE_URL with  your  mysql database url in the .env file
+
+If NOT replace the DATABASE_URL with your mysql database url in the .env file
 
 and then run :
 
@@ -37,6 +36,11 @@ and then run :
 npx prisma migrate dev --name init
 ```
 
+seed some data to log in
+
+```bash
+npm run db:seed
+```
 
 Run the app
 
@@ -44,6 +48,10 @@ Run the app
 npm run build && npm run start
 ```
 
-
 Open your prefered browser and Enter :
 http://localhost:3000
+
+you can login with
+
+<h1>admin</h1>
+<h1>admin123</h1>

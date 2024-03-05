@@ -34,6 +34,7 @@ async function main() {
     data: {
       username: "admin",
       email: "admin@gmail.com",
+      is_admin: true,
       password: hashedPassword,
       compagny: {
         connect: {
