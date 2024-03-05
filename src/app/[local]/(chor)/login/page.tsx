@@ -5,21 +5,38 @@ import { lucia } from "~/server/lucia/auth";
 import { db } from "~/server/db";
 import type { ActionResult } from "../../../(auth)/signup/page";
 import { Form } from "../../../(auth)/signup/components/form";
+import { Card } from "~/components/ui/card";
+import { Asterisk, User } from "lucide-react";
+import { Input } from "~/components/ui/input";
+import { Label } from "~/components/ui/label";
+import { Button } from "~/components/ui/button";
 
 export default async function Page() {
   return (
-    <>
-      <h1>Sign in</h1>
+    <div className="m-32 ">
+      <h1>Login</h1>
       <Form action={login}>
-        <label htmlFor="name">name</label>
-        <input name="name" id="name" />
-        <br />
-        <label htmlFor="password">Password</label>
-        <input type="password" name="password" id="password" />
-        <br />
-        <button>Continue</button>
+        <Card className="flex flex-col p-2 ">
+          <div className="relative">
+            <Label htmlFor="name">name</Label>
+            <Input name="name" id="name" />
+            <div className="absolute right-3 top-1/2 -translate-y-1/2 transform">
+              <User className="h-5 w-5 text-secondary" />
+            </div>
+          </div>
+          <div className="relative">
+            <Label htmlFor="password">Password</Label>
+            <Input type="password" name="password" id="password" />
+            <div className="absolute right-3 top-1/2 -translate-y-1/2 transform">
+              <User className="h-5 w-5 text-secondary" />
+            </div>
+          </div>
+
+          <br />
+          <Button>Login</Button>
+        </Card>
       </Form>
-    </>
+    </div>
   );
 }
 

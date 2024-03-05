@@ -27,6 +27,7 @@ import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import { logout } from "~/app/[local]/(chor)/logout/Logout";
+import { useSession } from "~/app/_context/SessionContext";
 
 interface linksProps {
   title: string;
@@ -36,9 +37,9 @@ interface linksProps {
 }
 
 export default function Nav() {
-  //   const { mutate: logout } = useLogout();
   const u = useTranslations("User");
-
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
   const links: linksProps[] = [
     {
       title: "login",
@@ -89,72 +90,69 @@ export default function Nav() {
       variant: "ghost",
     },
   ];
-  const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  let path = usePathname();
-  //   remove the local "en or fr" from the path
-  path = path.replace(/\/(en|fr)/, "");
-
-  const activeLink = links.findIndex((link) => link.link === path);
-  // set the variant of the active link to default
-  links[activeLink] = {
-    ...links[activeLink],
-    variant: "default",
-  };
-
   useEffect(() => {
     setMounted(true);
   }, []);
 
+  let path = usePathname();
+  path = path.replace(/\/(en|fr)/, "");
+  const activeLink = links.findIndex((link) => link.link === path);
+  links[activeLink] = {
+    ...links[activeLink],
+    variant: "default",
+  };
+  const { session, user } = useSession();
+
   return (
-    <div className="group flex h-full  flex-col gap-4 border-r py-2 shadow-lg ">
-      <nav className="flex h-full flex-col gap-1 px-2 ">
-        {links.map((link, index) => (
+    user && (
+      <div className="group flex h-full  flex-col gap-4 border-r py-2 shadow-lg ">
+        <nav className="flex h-full flex-col gap-1 px-2 ">
+          {links.map((link, index) => (
+            <Link
+              key={index}
+              href={link.link}
+              className={cn(
+                buttonVariants({ variant: link.variant, size: "sm" }),
+
+                "mb-2 justify-start ",
+              )}
+            >
+              <link.icon className="mr-2 h-6 w-6 " />
+              {link.title}
+            </Link>
+          ))}
+        </nav>
+
+        <div className="flex flex-col px-2">
           <Link
-            key={index}
-            href={link.link}
-            className={cn(
-              buttonVariants({ variant: link.variant, size: "sm" }),
-
-              "mb-2 justify-start ",
-            )}
-          >
-            <link.icon className="mr-2 h-6 w-6 " />
-            {link.title}
-          </Link>
-        ))}
-      </nav>
-
-      <div className="flex flex-col px-2">
-        <Link
-          href="#"
-          className={cn(
-            buttonVariants({ variant: "ghost", size: "sm" }),
-            "mb-2 justify-start",
-          )}
-        >
-          <UserRoundCog className="mr-2 h-6 w-6 " />
-          Sittings
-        </Link>
-
-        {mounted && (
-          <button
-            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            href="#"
             className={cn(
               buttonVariants({ variant: "ghost", size: "sm" }),
-              "mb-2 justify-start text-primary",
+              "mb-2 justify-start",
             )}
           >
-            {theme === "dark" ? (
-              <Sun className="mr-2 h-6 w-6 " />
-            ) : (
-              <Moon className="mr-2 h-6 w-6 " />
-            )}
-            {theme === "dark" ? "Light" : "Dark"}
-          </button>
-        )}
+            <UserRoundCog className="mr-2 h-6 w-6 " />
+            Sittings
+          </Link>
+
+          {mounted && (
+            <button
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              className={cn(
+                buttonVariants({ variant: "ghost", size: "sm" }),
+                "mb-2 justify-start text-primary",
+              )}
+            >
+              {theme === "dark" ? (
+                <Sun className="mr-2 h-6 w-6 " />
+              ) : (
+                <Moon className="mr-2 h-6 w-6 " />
+              )}
+              {theme === "dark" ? "Light" : "Dark"}
+            </button>
+          )}
+        </div>
       </div>
-    </div>
+    )
   );
 }

@@ -5,48 +5,54 @@ import { Skeleton } from "~/components/ui/skeleton";
 import { validateRequest } from "~/server/lucia/validateRequests";
 import Logout from "~/app/[local]/(chor)/logout/Logout";
 import { api } from "~/trpc/server";
-import { redirect } from "next/navigation";
 import Image from "next/image";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 
 export default async function Header() {
   const { user } = await validateRequest();
+  let curentUser;
   if (!user) {
-    redirect("/login");
+    curentUser = { compagny: { company_logo: "", company_name: "" } };
+  } else {
+    curentUser = await api.user.getOne.query(parseInt(user.id));
   }
-  const curentUser = await api.user.getOne.query(parseInt(user.id));
 
   return (
-    <header className=" sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 px-10 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className=" flex h-14  items-center">
-        <div className="mr-4 flex">
-          <Link className="mr-6 flex items-center space-x-2" href="/">
-            <Image
-              src={curentUser?.compagny.company_logo ?? ""}
-              alt="logo"
-              width={40}
-              height={40}
-            />
-            <span className="hidden font-bold sm:inline-block">
-              {curentUser?.compagny.company_name}
-            </span>
-          </Link>
+    user && (
+      <header className=" sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 px-10 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <div className=" flex h-14  items-center">
+          <div className="mr-4 flex">
+            <Link className="mr-6 flex items-center space-x-2" href="/">
+              <Avatar>
+                <AvatarImage
+                  src={curentUser?.compagny.company_logo ?? "/logo.png"}
+                  alt="@logo"
+                />
+                <AvatarFallback>LG</AvatarFallback>
+              </Avatar>
 
-          <nav className="flex items-center gap-6 text-sm"></nav>
-        </div>
+              <span className="hidden font-bold sm:inline-block">
+                {curentUser?.compagny.company_name}
+              </span>
+            </Link>
 
-        <div className="flex flex-1 items-center justify-end  space-x-2">
-          {user ? (
-            <nav className="flex cursor-pointer items-center">
-              <Link href="/profile">
-                <span className="mr-2 ">{user.username}</span>
-              </Link>
-              <Logout />
-            </nav>
-          ) : (
-            <Skeleton>login</Skeleton>
-          )}
+            <nav className="flex items-center gap-6 text-sm"></nav>
+          </div>
+
+          <div className="flex flex-1 items-center justify-end  space-x-2">
+            {user ? (
+              <nav className="flex cursor-pointer items-center">
+                <Link href="/profile">
+                  <span className="mr-2 ">{user.username}</span>
+                </Link>
+                <Logout />
+              </nav>
+            ) : (
+              <Skeleton>login</Skeleton>
+            )}
+          </div>
         </div>
-      </div>
-    </header>
+      </header>
+    )
   );
 }
