@@ -1,7 +1,6 @@
 import { PlusIcon } from "lucide-react";
 import { redirect } from "next/navigation";
 import React from "react";
-import { Button } from "~/components/ui/button";
 import { Card } from "~/components/ui/card";
 import { validateRequest } from "~/server/lucia/validateRequests";
 import { api } from "~/trpc/server";

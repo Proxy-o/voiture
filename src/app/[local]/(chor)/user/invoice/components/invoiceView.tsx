@@ -3,7 +3,6 @@ import React from "react";
 import { validateRequest } from "~/server/lucia/validateRequests";
 import { api } from "~/trpc/server";
 import InvoicePdf from "./invoicePdf";
-import { Button } from "~/components/ui/button";
 export default async function InvoiceView({
   invoiceId,
 }: {

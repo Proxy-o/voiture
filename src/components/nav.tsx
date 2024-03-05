@@ -1,7 +1,6 @@
 "use client";
 import Link from "next/link";
 import {
-  LogOut,
   type LucideIcon,
   UserRoundCog,
   UserRoundPlus,
@@ -13,7 +12,7 @@ import { Archive, Home, Users, Sun, Moon } from "lucide-react";
 import { useTheme } from "next-themes";
 import { cn } from "~/lib/utils";
 
-import { Button, buttonVariants } from "./ui/button";
+import { buttonVariants } from "./ui/button";
 import { redirect, usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";

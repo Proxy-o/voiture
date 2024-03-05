@@ -3,6 +3,7 @@ import { UploadThingError } from "uploadthing/server";
 
 const f = createUploadthing();
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const auth = (req: Request) => ({ id: "fakeId" }); // Fake auth function
 
 // FileRouter for your app, can contain multiple FileRoutes
@@ -20,6 +21,7 @@ export const ourFileRouter = {
       // Whatever is returned here is accessible in onUploadComplete as `metadata`
       return { userId: user.id };
     })
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     .onUploadComplete(async ({ metadata, file }) => {
       // This code RUNS ON YOUR SERVER after upload
 

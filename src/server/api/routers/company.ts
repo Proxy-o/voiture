@@ -1,14 +1,10 @@
 import { createCompanySchema } from "~/server/api/types";
 
-import {
-  createTRPCRouter,
-  protectedProcedure,
-  publicProcedure,
-} from "~/server/api/trpc";
+import { createTRPCRouter, protectedProcedure } from "~/server/api/trpc";
 import { z } from "zod";
 
 export const companyRouter = createTRPCRouter({
-  createCompany: publicProcedure
+  createCompany: protectedProcedure
     .input(createCompanySchema)
     .mutation(async ({ input, ctx }) => {
       return ctx.db.settings.create({
@@ -34,7 +30,7 @@ export const companyRouter = createTRPCRouter({
         },
       });
     }),
-  getClients: publicProcedure
+  getClients: protectedProcedure
     .input(z.number())
     .query(async ({ input, ctx }) => {
       return ctx.db.client.findMany({
