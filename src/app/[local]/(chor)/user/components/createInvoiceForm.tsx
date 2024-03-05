@@ -18,6 +18,7 @@ import { api } from "~/trpc/react";
 import CustomField from "../../admin/components/customFiled";
 import { useTranslations } from "next-intl";
 import { createInvoiceSchema } from "~/server/api/types";
+import { toast } from "sonner";
 
 export default function CreateInvoiceForm({
   company_id,
@@ -29,6 +30,8 @@ export default function CreateInvoiceForm({
   client_id: string | undefined;
 }) {
   const t = useTranslations("Invoice");
+  const m = useTranslations("Messages");
+
   const form = useForm<z.infer<typeof createInvoiceSchema>>({
     resolver: zodResolver(createInvoiceSchema),
     defaultValues: {
@@ -46,12 +49,20 @@ export default function CreateInvoiceForm({
   });
   const { mutate: submit } = api.invoice.addInvoice.useMutation();
   function onSubmit(values: z.infer<typeof createInvoiceSchema>) {
-    submit({
-      ...values,
-      company_id,
-      car_id,
-      client_id,
-    });
+    submit(
+      {
+        ...values,
+        company_id,
+        car_id,
+        client_id,
+      },
+      {
+        onSuccess: () => {
+          form.reset();
+          toast.success(m("invoice_created"));
+        },
+      },
+    );
   }
 
   return (

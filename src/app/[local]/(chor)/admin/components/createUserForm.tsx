@@ -21,9 +21,11 @@ import { useTranslations } from "next-intl";
 import SelectCompany from "./selectCompany";
 import { Checkbox } from "~/components/ui/checkbox";
 import { cn } from "~/lib/utils";
+import { toast } from "sonner";
 
 export default function CreateUserForm() {
   const t = useTranslations("User");
+  const m = useTranslations("Messages");
   const [companyId, setCompanyId] = React.useState<string>("1");
 
   const router = useRouter();
@@ -42,6 +44,7 @@ export default function CreateUserForm() {
     onSuccess: async () => {
       router.refresh();
       form.reset();
+      toast.success(m("user_created"));
     },
   });
   function onSubmit(values: z.infer<typeof createUserSchema>) {

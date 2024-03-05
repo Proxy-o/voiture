@@ -25,6 +25,7 @@ import { Card } from "~/components/ui/card";
 import { Moon, Sun } from "lucide-react";
 import { cn } from "~/lib/utils";
 import SelectLangue from "./components/selectLangue";
+import { toast } from "sonner";
 
 export default function Page() {
   const { theme, setTheme } = useTheme();
@@ -38,6 +39,7 @@ export default function Page() {
   const { data: curentUser } = api.user.getOne.useQuery(parseInt(user.id));
 
   const t = useTranslations("User");
+  const m = useTranslations("Messages");
 
   const router = useRouter();
 
@@ -49,6 +51,7 @@ export default function Page() {
     onSuccess: async () => {
       router.refresh();
       form.reset();
+      toast.success(m("user_updated"));
     },
   });
 

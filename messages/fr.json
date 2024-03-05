@@ -113,5 +113,14 @@
     "list_of_invoices": "Liste de factures",
     "invoice_number": "Numéro de facture",
     "action": "Action"
-  }
+  },
+  "Messages":{
+    "company_created": "Entreprise créée avec succès",
+    "user_created": "Utilisateur créé avec succès",
+    "user_updated": "Utilisateur mis à jour avec succès",
+    "car_created": "Véhicules créé avec succès",
+    "client_created": "Client créé avec succès",
+    "invoice_created": "Facture créée avec succès"
+
+  } 
 }

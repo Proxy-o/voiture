@@ -21,6 +21,7 @@ import { useTranslations } from "next-intl";
 import { Checkbox } from "~/components/ui/checkbox";
 import { Card } from "~/components/ui/card";
 import { cn } from "~/lib/utils";
+import { toast } from "sonner";
 
 export default function CreateClientForm({
   company_id,
@@ -28,6 +29,7 @@ export default function CreateClientForm({
   company_id: string;
 }) {
   const t = useTranslations("Client");
+  const m = useTranslations("Messages");
 
   const form = useForm<z.infer<typeof createClientSchema>>({
     resolver: zodResolver(createClientSchema),
@@ -51,9 +53,17 @@ export default function CreateClientForm({
   const { mutate: submit } = api.client.addClient.useMutation();
 
   function onSubmit(values: z.infer<typeof createClientSchema>) {
-    submit({
-      ...values,
-    });
+    submit(
+      {
+        ...values,
+      },
+      {
+        onSuccess: () => {
+          form.reset();
+          toast.success(m("client_created"));
+        },
+      },
+    );
   }
 
   return (

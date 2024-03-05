@@ -5,25 +5,19 @@ import { useForm } from "react-hook-form";
 import { createCompanySchema } from "../../../../../server/api/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import type { z } from "zod";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "~/components/ui/form";
+import { Form } from "~/components/ui/form";
 import { Button } from "~/components/ui/button";
 import { api } from "~/trpc/react";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import CustomField from "./customFiled";
 import { Card } from "~/components/ui/card";
-import { UploadButton, UploadDropzone } from "~/components/uploadthing";
-import { Input } from "~/components/ui/input";
+import { UploadButton } from "~/components/uploadthing";
+import { toast } from "sonner";
 
 export default function CreateCompanyForm() {
   const t = useTranslations("Company");
+  const m = useTranslations("Messages");
   const router = useRouter();
   const form = useForm<z.infer<typeof createCompanySchema>>({
     resolver: zodResolver(createCompanySchema),
@@ -53,6 +47,7 @@ export default function CreateCompanyForm() {
     onSuccess: async () => {
       router.refresh();
       form.reset();
+      toast.success(m("company_created"));
     },
   });
 
@@ -62,26 +57,23 @@ export default function CreateCompanyForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)}>
-        <div className="flex flex-col items-center gap-2   p-2">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="px-2">
+        <div className="flex flex-col items-center gap-2   ">
           <Card className="flex min-w-full flex-col gap-6 p-6">
             <p className="text-2xl">{t("company_info")}</p>
-            <p className="">logo</p>
+            <Card className="">
+              <p className="pb-2 text-center">logo</p>
+              <UploadButton
+                endpoint="imageUploader"
+                onClientUploadComplete={(res) => {
+                  form.setValue("company_logo", res[0]!.url);
+                }}
+                onUploadError={(error: Error) => {
+                  alert(`ERROR! ${error.message}`);
+                }}
+              />
+            </Card>
 
-            <UploadButton
-              endpoint="imageUploader"
-              onClientUploadComplete={(res) => {
-                // Do something with the response
-                console.log("Files: ", res[0]);
-                // set the the value of the logo
-                form.setValue("company_logo", res[0]!.url);
-                alert("Upload Completed");
-              }}
-              onUploadError={(error: Error) => {
-                // Do something with the error.
-                alert(`ERROR! ${error.message}`);
-              }}
-            />
             <CustomField
               control={form.control}
               name="company_name"
@@ -206,7 +198,7 @@ export default function CreateCompanyForm() {
             />
           </Card>
         </div>
-        <Button type="submit" className="w-full">
+        <Button type="submit" className="mt-1 w-full">
           {t("create_company")}
         </Button>
       </form>

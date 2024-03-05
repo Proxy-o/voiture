@@ -21,9 +21,11 @@ import { createCarSchema } from "~/server/api/types";
 import { Card } from "~/components/ui/card";
 import { cn } from "~/lib/utils";
 import { Checkbox } from "~/components/ui/checkbox";
+import { toast } from "sonner";
 
 export default function CreateCarForm({ company_id }: { company_id: string }) {
   const t = useTranslations("Car");
+  const m = useTranslations("Messages");
   const form = useForm<z.infer<typeof createCarSchema>>({
     resolver: zodResolver(createCarSchema),
     defaultValues: {
@@ -49,9 +51,16 @@ export default function CreateCarForm({ company_id }: { company_id: string }) {
   });
   const { mutate: submit } = api.car.addCar.useMutation();
   function onSubmit(values: z.infer<typeof createCarSchema>) {
-    submit({
-      ...values,
-    });
+    submit(
+      {
+        ...values,
+      },
+      {
+        onSuccess: () => {
+          toast.success(m("car_created"));
+        },
+      },
+    );
   }
 
   return (

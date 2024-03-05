@@ -114,9 +114,15 @@
     "invoice_number": "Invoice number",
     "action": "Action"
 
-
-  
-
+  }
+  ,
+  "Messages":{
+    "company_created": "Company created",
+    "user_created": "User created",
+    "user_updated": "User updated",
+    "car_created": "Car created",
+    "client_created": "Client created",
+    "invoice_created": "Invoice created"
   }
   
 }
